@@ -37,13 +37,13 @@ module.exports = {
     User.findById({_id: req.params.id}, function(err, user) {
       if(err) return res.send(err);
       var userFriends = []
-      user.friends.forEach(function(user) {
-        User.findById({_id: user.id}, function(err, user) {
+      user.friends.forEach(function(friend) {
+        User.findById({_id: friend.id}, function(err, user) {
           if(err) return res.send(err);
-          userFriends.push(user);
         });
       });
-      res.send(userFriends);
+      res.json(userFriends);
     });
-  }
+  },
+
 }
