@@ -1,0 +1,26 @@
+header h1, button {
+  display: inline-block;
+}
+
+header button {
+  margin-right: 10px;
+  margin-top: 15px;
+}
+
+.show {
+  border: 3px red solid;
+}
+
+.bold {
+  font-weight: bold;
+}
+
+.noLink {
+  text-decoration: none;
+  color: black;
+  margin-left: 50px;
+}
+
+.block {
+  display: block;
+}

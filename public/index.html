@@ -3,16 +3,33 @@
   <head>
     <meta charset="utf-8">
     <title>Super Dope Disc Golf App</title>
+
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.5/angular.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.18/angular-ui-router.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/js/materialize.js"></script>
     <script type="text/javascript" src="app.js"></script>
     <script type="text/javascript" src="frontEndControllers/mainController.js">
 
     </script>
-    <!-- <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/css/materialize.css"></script> -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/css/materialize.css">
+    <link rel="stylesheet" href="main.css" media="screen" title="no title" charset="utf-8">
   </head>
-  <body ng-controller="mainController as mc">
-    
-    postal code:<input type="text" ng-model="mc.zipCode"><br>
-    <button ng-click="mc.search()">Search</button>
+  <body>
+    <div class="row">
+      <header class="valign-wrapper">
+        <a ui-sref="home" class="noLink"><h1>Super Dope Disc Golf App</h1></a>
+        <div class="col s3">
+          <a ui-sref="register"><button class="waves-effect waves-light btn">Register</button></a>
+          <a ui-sref="login"><button class="waves-effect waves-light btn">Login</button></a>
+        </div>
+      </header>
+    </div>
+    <div class="divider"></div>
+    <div class="container">
+      <div class="row">
+        <ui-view></ui-view>
+      </div>
+    </div>
   </body>
 </html>

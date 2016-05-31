@@ -4,6 +4,7 @@ var bodyParser = require('body-parser');
 var logger     = require('morgan');
 var mongoose   = require('mongoose');
 var routes     = require('./routes.js');
+var bcrypt     = require('bcryptjs');
 var app        = express();
 
  // end requires and variables
