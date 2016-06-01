@@ -18,9 +18,10 @@
   <button class="waves-effect waves-light btn" ng-click="mc.search()">Search Now</button>
 </div>
 <div class="col s12">
+  <h5 class="error">{{ mc.errMsg }}</h5>
   <ul>
     <li ng-repeat="course in mc.courses">
-      <h4>{{ course.name }}</h4>
+      <a ng-href="#/course/{{course._id}}"><h4>{{ course.name }}</h4></a>
     </li>
   </ul>
 </div>

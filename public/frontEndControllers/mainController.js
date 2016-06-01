@@ -11,6 +11,8 @@
     mc.courseState = '';
     mc.courseZip = '';
     mc.courses = [];
+    mc.errMsg = '';
+
 // -=-=-=-=-=-=-=-=-=-= creates new user -=-=-=-=-=-=-=-=-=-=-=-=-=
     mc.register = function() {
       $http({
@@ -24,7 +26,7 @@
         }
       }).then(function(response) {
         if(response.data.errmsg) {
-          console.log('shit', response.data.errmsg)
+          console.log('There was an error: ', response.data.errmsg)
         } else {
           $state.go('profile')
         }
@@ -32,13 +34,16 @@
     }
 // -=-=-=-=-=-=-=-=-=-=-=-=- searches database for course -=-=-=-=-=-=-=
     mc.search = function() {
-      $http.get('/api/course?name=' + mc.capitalize(mc.courseName) + '&city=' + mc.capitalize(mc.courseCity) + '&state=' + mc.courseState.toUpperCase() + '&zipCode=' + mc.courseZip)
+      mc.errMsg = '';
+      mc.courses = [];
+      $http.get('/api/courses?name=' + mc.capitalize(mc.courseName) + '&city=' + mc.capitalize(mc.courseCity) + '&state=' + mc.courseState.toUpperCase() + '&zipCode=' + mc.courseZip)
         .then(function(returnData) {
-          console.log('return data: ', returnData)
           if(returnData.data.length>0) {
             mc.courses = returnData.data
           }
-          else console.log('no courses')
+           else {
+             mc.errMsg = "It appears there are no courses that fit that search"
+           }
         })
 
     }

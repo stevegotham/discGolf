@@ -1,5 +1,6 @@
 body {
   font-family: Robotu;
+  font-size: 1.2em;
 }
 
 .header {
@@ -30,4 +31,8 @@ header button {
 
 .block {
   display: block;
+}
+
+.error {
+  color: red;
 }

@@ -16,8 +16,11 @@ router.route('/friends:id')
 
 // -=-=-=-=-=-=-=- courses -=-=-=-=-=-=-=-
 
-router.route('/api/course')
+router.route('/api/courses')
   .get(courseCtrl.search)
+
+router.route('/api/course/:id')
+  .get(courseCtrl.searchOne)
 
 
 module.exports = router
