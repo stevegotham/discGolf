@@ -32,6 +32,17 @@
         }
       })
     }
+// -=-=-=-=-=-=-=-=-=-=-= logges in a registered user -=-=-=-=-=-=-=-
+    mc.login = function() {
+      $http.get('/users?username=' + mc.username + '&password=' + mc.password).then(function(response) {
+        if(response.data.length>0) {
+          $state.go('profile', {id: response.data[0]._id})
+        }
+        else {
+          mc.errMsg = "We couldn't find a user with those credentials"
+        }
+      })
+    }
 // -=-=-=-=-=-=-=-=-=-=-=-=- searches database for course -=-=-=-=-=-=-=
     mc.search = function() {
       mc.errMsg = '';
@@ -47,7 +58,6 @@
         })
 
     }
-
 // -=-=-=-=-=-=- capitalizes first letter of city and course names for search
     mc.capitalize = function(str) {
       var upper = function(string) {

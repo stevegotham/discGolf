@@ -1,6 +1,6 @@
 (function() {
   'use strict';
-  angular.module('discGolfApp', ['ui.router','mainController','oneCourseController'])
+  angular.module('discGolfApp', ['ui.router','mainController','oneCourseController', 'userController'])
     .config(routerConfig)
 
     function routerConfig($stateProvider,$urlRouterProvider){
@@ -22,9 +22,9 @@
           controller: 'mainController as mc'
         })
         .state('profile', {
-          url: '/profile',
+          url: '/profile/:id',
           templateUrl: 'html/profile.html',
-          controller: 'mainController as mc'
+          controller: 'userController as mc'
         })
         .state('search', {
           url: '/search',
@@ -35,6 +35,11 @@
           url: '/course/:id',
           templateUrl: 'html/course.html',
           controller: 'oneCourseController as mc'
+        })
+        .state('user', {
+          url: '/user/:id',
+          templateUrl: 'html/profile.html',
+          controller: 'userController as mc'
         })
 
         $urlRouterProvider.otherwise('/')

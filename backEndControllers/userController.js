@@ -10,15 +10,19 @@ module.exports = {
     });
   },
   find : function(req, res) {
-    User.find({deleted: false}, function(err, users) {
-      if(err) return res.send(err);
-      res.send(users)
+    var query = {};
+    query.username = req.query.username;
+    query.password = req.query.password;
+    User.find(query, function(err, users) {
+      if(err) return res.json({error: err});
+      res.json(users)
     });
   },
   findOne : function(req, res) {
-    User.findById({_id: req.params.id}, function(err, user) {
-      if(err) return res.send(err);
-      res.send(user);
+    console.log('working, :', req.params.id)
+    User.findById(req.params.id, function(err, user) {
+      if(err) return res.json({error: err});
+      res.json(user);
     })
   },
   update : function(req, res) {

@@ -1,9 +1,9 @@
 (function() {
   'use strict';
     angular.module('oneCourseController', [])
-      .controller('oneCourseController', ['$http','$state','$stateParams', '$sce', oneCtrlFunc])
+      .controller('oneCourseController', ['$http', '$stateParams', '$sce', oneCtrlFunc])
 
-  function oneCtrlFunc($http,$state,$stateParams,$sce) {
+  function oneCtrlFunc($http,$stateParams,$sce) {
     var mc = this;
 
     mc.course = {};
@@ -11,7 +11,6 @@
 
     $http.get('/api/course/' + $stateParams.id)
       .then(function(response) {
-        console.log(response)
         mc.course = response.data
       })
   }
