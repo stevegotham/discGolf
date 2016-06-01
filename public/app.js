@@ -28,10 +28,14 @@
         })
         .state('search', {
           url: '/search',
-          templateUrl: 'html/search',
+          templateUrl: 'html/search.html',
           controller: 'mainController as mc'
         })
-
+        .state('course', {
+          url: '/course',
+          templateUrl: 'html/course.html',
+          controller: 'mainController as mc'
+        })
 
         $urlRouterProvider.otherwise('/')
     }

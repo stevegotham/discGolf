@@ -1,0 +1,26 @@
+<div class="input-field col s8">
+  <input type="text" id="Course Name" ng-model="mc.courseName">
+  <label for="state">Course Name
+</div>
+<div class="input-field col s8">
+  <input type="text" id="city" ng-model="mc.courseCity">
+  <label for="city">City
+</div>
+<div class="input-field col s8">
+  <input type="text" id="state" ng-model="mc.courseState">
+  <label for="state">State Abbreviation
+</div>
+<div class="input-field col s8">
+  <input type="text" id="zip" ng-model="mc.courseZip">
+  <label for="zip">Zip Code
+</div>
+<div class="col s12">
+  <button class="waves-effect waves-light btn" ng-click="mc.search()">Search Now</button>
+</div>
+<div class="col s12">
+  <ul>
+    <li ng-repeat="course in mc.courses">
+      <h4>{{ course.name }}</h4>
+    </li>
+  </ul>
+</div>

@@ -1,3 +1,10 @@
+body {
+  font-family: Robotu;
+}
+
+.header {
+  border-bottom: 1px #2BBBAD solid;
+}
 header h1, button {
   display: inline-block;
 }
