@@ -1,4 +1,5 @@
 var mongoose = require('mongoose');
+var bcrypt = require('bcryptjs');
 
 var userSchema = mongoose.Schema({
   name : {type: String},
@@ -8,5 +9,22 @@ var userSchema = mongoose.Schema({
   deleted : {type: Boolean, default: false},
   friends : {type: Array}
 });
+
+userSchema.pre('save', function(next) {
+  var user = this;
+  if(!user.isModified('password')) return next();
+  bcrypt.genSalt(11, function(error, salt){
+    bcrypt.hash(user.password, salt, function(err, hash) {
+      if (err) return next(err);
+      user.password = hash;
+      next();
+    });
+  });
+});
+
+userSchema.methods.comparePassword = function(password) {
+  var user = this;
+  return bcrypt.compareSync(password, user.password);
+};
 
 module.exports = mongoose.model('User', userSchema);

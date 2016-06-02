@@ -1,21 +1,38 @@
 var User = require('../models/userModel.js');
+var bcrypt = require('bcryptjs');
+var jwt = require('jsonwebtoken');
+var mySpecialSecret = "ching";
 
 module.exports = {
 
   add : function(req, res) {
     var newUser = new User(req.body);
     newUser.save(function(err, user) {
-      if(err) return res.send(err);
-      res.send(user);
+      if(err) return res.json(err);
+      var token = jwt.sign({
+          username: user.username,
+          email: user.email
+          }, mySpecialSecret, {
+            expiresIn: "1 day"
+        });
+      res.json({user: user, token: token});
     });
   },
   find : function(req, res) {
     var query = {};
     query.username = req.query.username;
-    query.password = req.query.password;
-    User.find(query, function(err, users) {
+    User.findOne(query).select('username email password').exec(function(err, user) {
       if(err) return res.json({error: err});
-      res.json(users)
+      if(!user) return res.json({message: 'No user found'});
+      var validPw = user.comparePassword(req.query.password);
+      if(!validPw) return res.json({success: false, message: "Authentication failed, wrong password."});
+      var token = jwt.sign({
+          username: user.username,
+          email: user.email
+          }, mySpecialSecret, {
+            expiresIn: "1 day"
+        });
+      res.json({user: user, token : token});
     });
   },
   findOne : function(req, res) {

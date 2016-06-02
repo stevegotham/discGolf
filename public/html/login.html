@@ -1,15 +1,16 @@
 <div class="row">
+  <h3>Please log in below</h3>
   <form class="col s12" ng-submit="mc.login()">
     <div class="row">
       <div class="input-field col s8">
         <input id="username" type="text" class="validate" ng-model="mc.username" required="true">
-        <label for="username">Username (case sensitive)</label>
+        <label for="username">Username</label>
       </div>
     </div>
     <div class="row">
       <div class="input-field col s8">
         <input id="password" type="password" class="validate" ng-model="mc.password" required="true">
-        <label for="password">Password (case sensitive)</label>
+        <label for="password">Password</label>
       </div>
     </div>
     <input type="submit" class="waves-effect waves-light btn">

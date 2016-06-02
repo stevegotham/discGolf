@@ -3,6 +3,8 @@
     <ul>
       <li><h3>{{mc.course.name }}</h3></li>
       <li><h4>{{ mc.course.city }}, {{ mc.course.state }}</h4></li>
+      <li><h5>{{ mc.course.holes }} holes</h5></li>
+      <li><h5>{{ mc.course.teeTypes }} tees</h5></li>
       <span class="bold">Description: </span><li ng-bind-html="mc.sce.trustAsHtml(mc.course.description)"></li>
       <span class="bold">Directions: </span><li ng-bind-html="mc.sce.trustAsHtml(mc.course.directions)"></li>
     </ul>
