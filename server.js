@@ -18,10 +18,6 @@ mongoose.connect('mongodb://localhost/discGolfDB');
 
 // end configuration
 // -=-=-=-=-=-=-=-=-=
-// start middleware
-
-// end middleware
-// -=-=-=-=-=-=-=-=-=
 // start routes
 app.use('/', routes)
 // end routes

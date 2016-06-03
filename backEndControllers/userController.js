@@ -11,7 +11,8 @@ module.exports = {
       if(err) return res.json(err);
       var token = jwt.sign({
           username: user.username,
-          email: user.email
+          email: user.email,
+          _id: user._id
           }, mySpecialSecret, {
             expiresIn: "1 day"
         });
@@ -28,7 +29,8 @@ module.exports = {
       if(!validPw) return res.json({success: false, message: "Authentication failed, wrong password."});
       var token = jwt.sign({
           username: user.username,
-          email: user.email
+          email: user.email,
+          _id: user._id
           }, mySpecialSecret, {
             expiresIn: "1 day"
         });
@@ -36,14 +38,14 @@ module.exports = {
     });
   },
   findOne : function(req, res) {
-    console.log('working, :', req.params.id)
-    User.findById(req.params.id, function(err, user) {
+    User.findById(req.params.id).populate('favCourses').exec(function(err, user) {
       if(err) return res.json({error: err});
       res.json(user);
     })
   },
   update : function(req, res) {
-    User.findOneAndUpdate({_id: req.params.id}, req.body, {new: true}, function(err, user) {
+    console.log('req.body: ', req.body.favCourses._id)
+    User.findByIdAndUpdate(req.decoded._id, {$push:{"favCourses":{_id: req.body.favCourses._id}}}, {new: true}, function(err, user) {
       if(err) return res.send(err);
       res.send(user);
     });

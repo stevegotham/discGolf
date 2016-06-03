@@ -1,11 +1,11 @@
 (function() {
   'use strict';
     angular.module('userController', [])
-      .controller('userController', ['$http', '$stateParams', userFunc])
+      .controller('userController', ['$http', '$stateParams','$window', userFunc])
 
-  function userFunc($http, $stateParams) {
+  function userFunc($http, $stateParams, $window) {
     var mc = this;
-    mc.user = {};
+
     $http.get('/user/' + $stateParams.id)
       .then(function(response) {
         console.log('logged in user: ', response)

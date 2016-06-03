@@ -7,7 +7,8 @@ var userSchema = mongoose.Schema({
   email : {type: String, required: true, unique: true},
   password : {type: String, required: true},
   deleted : {type: Boolean, default: false},
-  friends : {type: Array}
+  friends : [{ type: mongoose.Schema.Types.ObjectId, ref: 'User' }],
+  favCourses: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Course' }]
 });
 
 userSchema.pre('save', function(next) {
