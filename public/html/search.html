@@ -1,9 +1,9 @@
 
 <h3>Search for courses by any of the fields below</h3>
-<div class="input-field col s8">
+<!-- <div class="input-field col s8">
   <input type="text" id="Course Name" ng-model="mc.courseName">
   <label for="state">Course Name</label>
-</div>
+</div> -->
 <div class="input-field col s8">
   <input type="text" id="city" ng-model="mc.courseCity">
   <label for="city">City</label>
@@ -20,7 +20,7 @@
   <button class="waves-effect waves-light btn" ng-click="mc.search()">Search Now</button>
 </div>
 <div class="col s12">
-  <h5 class="error">{{ mc.errMsg }}</h5>
+  <h4 class="error">{{ mc.errMsg }}</h4>
   <h5 ng-hide="mc.courseResults">{{ mc.number }} courses:</h5>
   <ul>
     <li ng-repeat="course in mc.courses">

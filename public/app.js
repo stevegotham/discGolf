@@ -54,7 +54,7 @@ $httpProvider.interceptors.push('AuthInterceptor');
           controller: 'mainController as mc'
         })
         .state('profile', {
-          url: '/profile/:id',
+          url: '/user/:id',
           templateUrl: 'html/profile.html',
           controller: 'userController as mc'
         })

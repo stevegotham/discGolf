@@ -1,10 +1,10 @@
 <h1>{{ mc.user.username }}</h1>
 
-<div class="col s4 show">
-  <ol>
+<div class="col s12">
+  <ul>
     <li ng-repeat="fav in mc.user.favCourses">{{ fav.name }}</li>
-  </ol>
+  </ul>
 </div>
 <div>
-  <a ui-sref="search"><button class="waves-effect waves-light btn show">Search for courses</button></a>
+  <a ui-sref="search"><button class="waves-effect waves-light btn">Search for courses</button></a>
 </div>

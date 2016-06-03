@@ -3,6 +3,10 @@ body {
   font-size: 1.2em;
 }
 
+li {
+  list-style-type: : circle;
+}
+
 #sidebar {
   height: 500px;
   width: 10px;

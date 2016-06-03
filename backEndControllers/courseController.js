@@ -1,6 +1,6 @@
-var $http = require('request');
-$http = $http.defaults({jar: true});
-var Course = require('../models/courseModel.js')
+var $http  = require('request');
+$http      = $http.defaults({jar: true});
+var Course = require('../models/courseModel.js');
 
 module.exports = {
 

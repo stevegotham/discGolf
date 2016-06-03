@@ -1,4 +1,4 @@
-var router      = require('express').Router();
+var router          = require('express').Router();
 var userCtrl        = require('./backEndControllers/userController.js');
 var courseCtrl      = require('./backEndControllers/courseController.js');
 var jwt             = require('jsonwebtoken');
@@ -17,7 +17,9 @@ router.route('/api/course/:id')
 
 router.route('/users')
   .post(userCtrl.add)
-  .get(userCtrl.find)
+  // .get(userCtrl.find) --- going to remove after rewriting routes.js
+  router.route('/user/:id')
+  .post(userCtrl.login)
 
 router.use(function(req, res, next){
 	var token = req.body.token || req.param('token') || req.headers['x-access-token']

@@ -1,13 +1,13 @@
 (function() {
   'use strict';
     angular.module('oneCourseController', [])
-      .controller('oneCourseController', ['$http', '$stateParams', '$sce','$window', oneCtrlFunc])
+      .controller('oneCourseController', ['$http', '$stateParams', '$sce','$window', oneCourseFunction])
 
-  function oneCtrlFunc($http,$stateParams,$sce,$window) {
+  function oneCourseFunction($http,$stateParams,$sce,$window) {
     var mc = this;
     mc.addFav = function(course) {
       if(!$window.localStorage.token) {
-        mc.errMsg = "You must be logged in to add favorites"
+        mc.errMsg = "You must be logged in to add courses you've played"
       }
       else {
         $http({

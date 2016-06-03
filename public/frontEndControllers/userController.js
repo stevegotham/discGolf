@@ -1,9 +1,9 @@
 (function() {
   'use strict';
     angular.module('userController', [])
-      .controller('userController', ['$http', '$stateParams','$window', userFunc])
+      .controller('userController', ['$http', '$stateParams', userFunc])
 
-  function userFunc($http, $stateParams, $window) {
+  function userFunc($http, $stateParams) {
     var mc = this;
 
     $http.get('/user/' + $stateParams.id)
