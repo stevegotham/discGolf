@@ -49,3 +49,12 @@ header button {
 .error {
   color: red;
 }
+
+#buttons button {
+  margin-left: 30px;
+  margin-top: 10px;
+}
+#buttons input {
+  /*margin-left: 30px;*/
+  margin-top: 10px;
+}

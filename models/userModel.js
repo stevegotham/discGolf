@@ -4,11 +4,12 @@ var bcrypt   = require('bcryptjs');
 var userSchema = mongoose.Schema({
   name : {type: String},
   username : {type: String, required: true, unique: true},
-  email : {type: String, required: true, unique: true},
+  email : {type: String, required: true},
   password : {type: String, required: true},
   deleted : {type: Boolean, default: false},
   friends : [{ type: mongoose.Schema.Types.ObjectId, ref: 'User' }],
-  favCourses: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Course' }]
+  favCourses: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Course' }],
+  courseInfo: {type: Array}
 });
 
 userSchema.pre('save', function(next) {

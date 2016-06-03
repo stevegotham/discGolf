@@ -11,11 +11,19 @@
         }
       })
   })
-  .controller('mainController',['$http','$state','$window', mainControl])
+  .controller('mainController',['$http','$state','$window','$rootScope', mainControl])
 
-  function mainControl($http,$state,$window){
+  function mainControl($http,$state,$window,$rootScope){
     var mc = this;
 
+    $rootScope.$on('$stateChangeStart', function (event, toState, toParams, fromState, fromParams) {
+      if ($window.localStorage.getItem('token')) {
+        mc.loggedIn = true;
+        mc.loggedID = $window.localStorage.getItem('_id')
+      } else {
+        mc.loggedIn = false;
+      }
+    })
     mc.courseName = '';
     mc.courseCity = '';
     mc.courseState = '';
@@ -34,14 +42,15 @@
           name: mc.realName.toLowerCase(),
           username: mc.username.toLowerCase(),
           email: mc.email.toLowerCase(),
-          password: mc.password.toLowerCase()
+          password: mc.password
         }
       }).then(function(response) {
         console.log('res: ', response)
         if(response.data.errmsg) {
-          console.log('There was an error: ', response.data.errmsg)
+          mc.errMsg = response.data.errmsg
         } else {
           $window.localStorage.setItem('token', response.data.token)
+          $window.localStorage.setItem('_id', response.data.user._id)
           $state.go('profile', {id: response.data.user._id})
         }
       })
@@ -52,11 +61,11 @@
         method: "POST",
         url: '/user/:id',
         data: {
-          username: mc.username,
+          username: mc.username.toLowerCase(),
           password: mc.password
         }
       }).then(function(response) {
-        console.log('login response', response)
+        // console.log('login response', response)
         if(response.data.message) {
           mc.errMsg = response.data.message
         } else {

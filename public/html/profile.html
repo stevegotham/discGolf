@@ -1,10 +1,43 @@
-<h1>{{ mc.user.username }}</h1>
 
-<div class="col s12">
-  <ul>
-    <li ng-repeat="fav in mc.user.favCourses">{{ fav.name }}</li>
-  </ul>
+<div class="row" ng-show="mc.info">
+  <h1>{{ mc.user.username }}</h1>
+  <div class="col s6">
+    <ul>
+      <li><h5>Best round:</h5> -2 @ Valmont Disc Park</li>
+      <li><h5>Most played course:</h5> Edora Park</li>
+    </ul>
+  </div>
+  <div class="col s6">
+    <h5>Your courses:</h5>
+    <ul>
+      <!-- <li ng-repeat="fav in mc.user.favCourses"><span ng-click="mc.addStats(fav)">{{ fav.name }}</span></li> -->
+      <li ng-repeat="fav in mc.user.favCourses"><span ng-click="mc.addStats(fav)">{{ fav.name }}</span></li>
+    </ul>
+  </div>
+  <div class="col s12" id="buttons">
+    <a ui-sref="search"><button class="waves-effect waves-light btn">Search for courses</button></a>
+    <button ng-click="mc.logOut()" class="waves-effect waves-light btn">Logout</button>
+    <button ng-click="mc.deleteUser(mc.user)" class="waves-effect waves-light btn">Delete Account</button>
+  </div>
 </div>
-<div>
-  <a ui-sref="search"><button class="waves-effect waves-light btn">Search for courses</button></a>
+
+<div class="row" ng-hide="mc.info">
+  <h1>{{ mc.user.username }}</h1>
+  <h4>Course: {{ mc.thisOne.name }}</h4>
+  <div>
+    <form ng-submit="mc.submitStats(mc.thisOne)">
+      <div class="input-field col s8">
+        <input id="score" type="text" ng-model="mc.score">
+        <label for="score">Score (eg: +1 or -2)</label>
+      </div>
+      <div class="input-field col s8">
+        <input id="date" type="text" ng-model="mc.date">
+        <label for="date">Date Played (mm/dd/yr)</label>
+      </div>
+      <div id="buttons" class="col s12">
+        <input type="submit" class="waves-effect waves-light btn">
+        <button ng-click="!mc.info" class="waves-effect waves-light btn">Cancel</button>
+      </div>
+    </form>
+  </div>
 </div>

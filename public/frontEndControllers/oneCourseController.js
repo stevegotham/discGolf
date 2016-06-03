@@ -17,9 +17,7 @@
             favCourses: course
           }
         }).then(function(response) {
-          // console.log(response)
         })
-        // console.log($window.localStorage.user)
       }
     }
     mc.course = {};

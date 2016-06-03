@@ -17,8 +17,8 @@ router.route('/api/course/:id')
 
 router.route('/users')
   .post(userCtrl.add)
-  // .get(userCtrl.find) --- going to remove after rewriting routes.js
-  router.route('/user/:id')
+
+router.route('/user/:id')
   .post(userCtrl.login)
 
 router.use(function(req, res, next){
