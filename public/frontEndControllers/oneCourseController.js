@@ -5,6 +5,12 @@
 
   function oneCourseFunction($http,$stateParams,$sce,$window) {
     var oneCourseCtrl = this;
+
+    oneCourseCtrl.course = {};
+    // -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= this variable is used to parse the descriptions of courses from database -=-=-=-=-
+    oneCourseCtrl.sce = $sce;
+
+    // -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=- function to add course to player's array of courses -=-=-=-=-=-=-=-=-=-=-=-=-=
     oneCourseCtrl.addFav = function(course) {
       if(!$window.localStorage.token) {
         oneCourseCtrl.errMsg = "You must be logged in to add courses you've played"
@@ -20,9 +26,7 @@
         })
       }
     }
-    oneCourseCtrl.course = {};
-    oneCourseCtrl.sce = $sce;
-
+    // -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=- function to retrieve a single course from database -=-=-=-=-=-=-=-=-=-=-=-=-=
     $http.get('/api/course/' + $stateParams.id)
       .then(function(response) {
         oneCourseCtrl.course = response.data

@@ -1,17 +1,46 @@
+/*-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= elements -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=*/
 body {
   font-family: Robotu;
   font-size: 1.2em;
 }
-
 li {
   list-style-type: : circle;
 }
+header h1, button {
+  display: inline-block;
+}
+header button {
+  margin-right: 10px;
+  margin-top: 15px;
+}
+/*-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= classes -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=*/
 .accent {
   color: #2BBBAD;
 }
 .accentBorder {
   border-bottom: 5px #2BBBAD solid;
 }
+.header {
+  border-bottom: 1px #2BBBAD solid;
+}
+.show {
+  border: 3px red solid;
+}
+.bold {
+  font-weight: bold;
+}
+.noLink {
+  text-decoration: none;
+  color: black;
+  margin-left: 50px;
+}
+.block {
+  display: block;
+}
+.error {
+  color: red;
+}
+/*-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=- ids -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=*/
 #sidebar {
   height: 500px;
   width: 10px;
@@ -20,52 +49,14 @@ li {
   left: 8%;
   margin-top: 15px;
 }
-
 #bar {
   height: 6px;
   background-color: #2BBBAD;
   margin-left: -25px;
 }
-
-.header {
-  border-bottom: 1px #2BBBAD solid;
+#buttons input {
+  margin-left: -13px;
 }
-header h1, button {
-  display: inline-block;
-}
-
-header button {
-  margin-right: 10px;
-  margin-top: 15px;
-}
-
-.show {
-  border: 3px red solid;
-}
-
-.bold {
-  font-weight: bold;
-}
-
-.noLink {
-  text-decoration: none;
-  color: black;
-  margin-left: 50px;
-}
-
-.block {
-  display: block;
-}
-
-.error {
-  color: red;
-}
-
-#buttons button {
-  margin-left: 30px;
-  margin-top: 10px;
-}
-
 #cancel {
   margin-top: 10px;
 }

@@ -1,4 +1,4 @@
-
+<!-- -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=- user info -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= -->
 <div class="row" ng-show="userCtrl.info">
   <h1><span class="accentBorder">{{ userCtrl.user.username }}</span></h1>
   <div class="col s6">
@@ -9,7 +9,7 @@
     </ul>
   </div>
   <div class="col s6">
-    <h5>Your courses:</h5>
+    <h5>Your courses</h5>
     <ul>
       <li ng-repeat="fav in userCtrl.user.favCourses" class="accent"><span ng-click="userCtrl.viewStats(fav)">{{ fav.name }}</span></li>
     </ul>
@@ -20,25 +20,24 @@
     <button ng-click="userCtrl.deleteUser(userCtrl.user)" class="waves-effect waves-light btn">Delete Account</button>
   </div>
 </div>
-
+<!-- -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= course info =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=- -->
 <div class="row" ng-hide="userCtrl.info">
   <h1><span class="accentBorder">{{ userCtrl.user.username }}</span></h1>
-
+  <button ng-click="userCtrl.backButton()" class="waves-effect waves-light btn">Back</button>
   <h4>{{ userCtrl.currentCourse.name }}</h4>
-
   <span>Best Round: {{ userCtrl.bestScore }} on {{ userCtrl.bestDate | date: shortDate }}</span>
   <br>
   <br>
   <ul>
-    <span ng-click="userCtrl.showStatsNow()" class="bold accent" > {{ userCtrl.action }}</span>
-    <li ng-repeat="stat in userCtrl.currentCourse.stats | orderBy : date" ng-hide="userCtrl.showStats">
+    <span ng-click="userCtrl.swapAction()" class="bold accent" > {{ userCtrl.action }}</span>
+    <li ng-repeat="stat in userCtrl.currentCourse.stats | orderBy: '-'" ng-hide="userCtrl.showStats">
       {{ stat.score }} on {{ stat.date | date: shortDate }}
     </li>
   </ul>
   <div class="col s12">
     <div id="bar" class="col s9"></div>
   </div>
-  <h5 class="col s12">Record your latest round:</h5>
+  <h5 class="col s12">Record your latest round</h5>
   <form ng-submit="userCtrl.submitStats(userCtrl.currentCourse)">
     <div class="input-field col s8">
       <input type="number" ng-model="userCtrl.score" required="true">
@@ -50,7 +49,4 @@
       <input type="submit" class="waves-effect waves-light btn">
     </div>
   </form>
-  <div id="cancel" class="col s12">
-    <button ng-click="userCtrl.backButton()" class="waves-effect waves-light btn">Back</button>
-  </div>
 </div>

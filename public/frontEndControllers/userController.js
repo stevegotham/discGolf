@@ -10,23 +10,15 @@
     userCtrl.date = new Date();
     userCtrl.showStats = true;
     userCtrl.action = "Show All Rounds";
-    userCtrl.showStatsNow = function() {
-      if(userCtrl.action === "Hide All Rounds") {
-        userCtrl.action = "Show All Rounds"
-      } else {
-        userCtrl.action = "Hide All Rounds"
-      }
-      userCtrl.showStats = !userCtrl.showStats;
-    }
-
+    // -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=- queries database for user info to display in profile view -=-=-=-=-=-=-=-=-=-=-
     $http.get('/user/' + $stateParams.id)
       .then(function(response) {
         userCtrl.user = response.data;
         userCtrl.profileBestScore = 125;
         userCtrl.profileBestDate = "a rough day many years ago";
-        userCtrl.profileBestCourse = "some God awful course"
+        userCtrl.profileBestCourse = "Some God-awful course"
         userCtrl.profileMost = 0;
-        userCtrl.profileMostPlayed = 'Some God awful course';
+        userCtrl.profileMostPlayed = 'Some God-awful course';
         for(var i=0;i<userCtrl.user.courseInfo.length;i++) {
           if(userCtrl.user.courseInfo[i].stats.length > userCtrl.profileMost) {
             userCtrl.profileMost = userCtrl.user.courseInfo[i].stats.length;
@@ -41,16 +33,12 @@
           }
         }
       })
+    // -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=- updates course-info variables to display in stats view -=-=-=-=-=-=-=
     userCtrl.viewStats = function(course) {
-      // $http.get('/user/' + $stateParams.id)
-      //   .then(function(response) {
-      //     userCtrl.user = response.data;
-      //   });
       userCtrl.info = !userCtrl.info;
       userCtrl.currentCourse = course;
       userCtrl.bestScore = 125;
       userCtrl.bestDate = "a rough day, many years ago";
-
       for(var i=0;i<userCtrl.user.courseInfo.length;i++) {
         if(userCtrl.user.courseInfo[i].name === course.name) {
           userCtrl.currentCourse = userCtrl.user.courseInfo[i];
@@ -63,18 +51,26 @@
         }
       }
     }
+    // -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=- swap value of 'userCtrl.action' variable -=-=-=-=-=-=-=-=-=-
+    userCtrl.swapAction = function() {
+      if(userCtrl.action === "Hide All Rounds") {
+        userCtrl.action = "Show All Rounds"
+      } else {
+        userCtrl.action = "Hide All Rounds"
+      }
+      userCtrl.showStats = !userCtrl.showStats;
+    }
+    // -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=- reset variables to update view -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
     userCtrl.backButton = function() {
-
       userCtrl.info = !userCtrl.info;
       userCtrl.showStats = true;
       userCtrl.action = "Show All Rounds";
     }
-      // -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=- function to update user stats in database
+      // -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=- function to update user stats in database -=-=-=-=-=-=-=-=-=-=-
     userCtrl.submitStats = function(course) {
       userCtrl.info = !userCtrl.info;
-      if(userCtrl.date === null) {
-        userCtrl.date = new Date();
-      }
+      userCtrl.showStats = true;
+      userCtrl.action = "Show All Rounds";
       $http({
         method: 'PATCH',
         url: '/user/:id',
@@ -100,9 +96,10 @@
                 }
               }
             }
-        userCtrl.score = 0;
+        userCtrl.score = null;
       })
     }
+    // -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=- delete user -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
     userCtrl.deleteUser = function(user) {
       $http.delete('user/:id')
         .then(function(err, response) {
@@ -112,12 +109,11 @@
           $state.go('home');
         })
     }
+    // -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=- log out -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
     userCtrl.logOut = function() {
       $window.localStorage.removeItem('token')
       $window.localStorage.removeItem('_id')
       $state.go('home')
     }
-
-
   }
 }());
