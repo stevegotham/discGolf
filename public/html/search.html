@@ -1,29 +1,29 @@
 
 <h3>Search for courses by any of the fields below</h3>
 <!-- <div class="input-field col s8">
-  <input type="text" id="Course Name" ng-model="mc.courseName">
+  <input type="text" id="Course Name" ng-model="mainCtrl.courseName">
   <label for="state">Course Name</label>
 </div> -->
 <div class="input-field col s8">
-  <input type="text" id="city" ng-model="mc.courseCity">
+  <input type="text" id="city" ng-model="mainCtrl.courseCity">
   <label for="city">City</label>
 </div>
 <div class="input-field col s8">
-  <input type="text" id="state" ng-model="mc.courseState">
+  <input type="text" id="state" ng-model="mainCtrl.courseState">
   <label for="state">State Abbreviation</label>
 </div>
 <div class="input-field col s8">
-  <input type="text" id="zip" ng-model="mc.courseZip">
+  <input type="text" id="zip" ng-model="mainCtrl.courseZip">
   <label for="zip">Zip Code</label>
 </div>
 <div class="col s12">
-  <button class="waves-effect waves-light btn" ng-click="mc.search()">Search Now</button>
+  <button class="waves-effect waves-light btn" ng-click="mainCtrl.search()">Search Now</button>
 </div>
 <div class="col s12">
-  <h4 class="error">{{ mc.errMsg }}</h4>
-  <h5 ng-hide="mc.courseResults">{{ mc.number }} courses:</h5>
+  <h4 class="error">{{ mainCtrl.errMsg }}</h4>
+  <h5 ng-hide="mainCtrl.courseResults">{{ mainCtrl.number }} courses:</h5>
   <ul>
-    <li ng-repeat="course in mc.courses">
+    <li ng-repeat="course in mainCtrl.courses">
       <a ng-href="#/course/{{course._id}}"><h4>{{ course.name }}</h4></a>
     </li>
   </ul>

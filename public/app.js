@@ -35,37 +35,37 @@
         .state('home', {
           url: '/',
           templateUrl: 'html/home.html',
-          controller: 'mainController as mc'
+          controller: 'mainController as mainCtrl'
         })
         .state('login', {
           url: '/login',
           templateUrl: 'html/login.html',
-          controller: 'mainController as mc'
+          controller: 'mainController as mainCtrl'
         })
         .state('register', {
           url: '/register',
           templateUrl: 'html/register.html',
-          controller: 'mainController as mc'
+          controller: 'mainController as mainCtrl'
         })
         .state('profile', {
           url: '/user/:id',
           templateUrl: 'html/profile.html',
-          controller: 'userController as uc'
+          controller: 'userController as userCtrl'
         })
         .state('search', {
           url: '/search',
           templateUrl: 'html/search.html',
-          controller: 'mainController as mc'
+          controller: 'mainController as mainCtrl'
         })
         .state('course', {
           url: '/course/:id',
           templateUrl: 'html/course.html',
-          controller: 'oneCourseController as mc'
+          controller: 'oneCourseController as oneCourseCtrl'
         })
         .state('user', {
           url: '/user/:id',
           templateUrl: 'html/profile.html',
-          controller: 'userController as uc'
+          controller: 'userController as userCtrl'
         })
 
         $urlRouterProvider.otherwise('/')

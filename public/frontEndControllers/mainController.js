@@ -14,40 +14,40 @@
   .controller('mainController',['$http','$state','$window','$rootScope', mainControl])
 
   function mainControl($http,$state,$window,$rootScope){
-    var mc = this;
+    var mainCtrl = this;
 
     $rootScope.$on('$stateChangeStart', function (event, toState, toParams, fromState, fromParams) {
       if ($window.localStorage.getItem('token')) {
-        mc.loggedIn = true;
-        mc.loggedID = $window.localStorage.getItem('_id')
+        mainCtrl.loggedIn = true;
+        mainCtrl.loggedID = $window.localStorage.getItem('_id')
       } else {
-        mc.loggedIn = false;
+        mainCtrl.loggedIn = false;
       }
     })
-    mc.courseName = '';
-    mc.courseCity = '';
-    mc.courseState = '';
-    mc.courseZip = '';
-    mc.courses = [];
-    mc.errMsg = '';
-    mc.number = '';
-    mc.courseResults = true;
+    mainCtrl.courseName = '';
+    mainCtrl.courseCity = '';
+    mainCtrl.courseState = '';
+    mainCtrl.courseZip = '';
+    mainCtrl.courses = [];
+    mainCtrl.errMsg = '';
+    mainCtrl.number = '';
+    mainCtrl.courseResults = true;
 
 // -=-=-=-=-=-=-=-=-=-= creates new user -=-=-=-=-=-=-=-=-=-=-=-=-=
-    mc.register = function() {
+    mainCtrl.register = function() {
       $http({
         method: 'POST',
         url: '/users',
         data: {
-          name: mc.realName,
-          username: mc.username,
-          email: mc.email,
-          password: mc.password
+          name: mainCtrl.realName,
+          username: mainCtrl.username,
+          email: mainCtrl.email,
+          password: mainCtrl.password
         }
       }).then(function(response) {
         console.log('res: ', response)
-        if(response.data.errmsg) {
-          mc.errMsg = response.data.errmsg
+        if(response.data.code === 11000) {
+          mainCtrl.errMsg = "There is already a user with that username";
         } else {
           $window.localStorage.setItem('token', response.data.token)
           $window.localStorage.setItem('_id', response.data.user._id)
@@ -56,18 +56,18 @@
       })
     }
 // -=-=-=-=-=-=-=-=-=-=-= logges in a registered user -=-=-=-=-=-=-=-
-    mc.login = function() {
+    mainCtrl.login = function() {
       $http({
         method: "POST",
         url: '/user/:id',
         data: {
-          username: mc.username,
-          password: mc.password
+          username: mainCtrl.username,
+          password: mainCtrl.password
         }
       }).then(function(response) {
         // console.log('login response', response)
         if(response.data.message) {
-          mc.errMsg = response.data.message
+          mainCtrl.errMsg = response.data.message
         } else {
           $window.localStorage.setItem('token', response.data.token)
           $window.localStorage.setItem('_id', response.data.user._id)
@@ -76,27 +76,27 @@
       })
     }
 // -=-=-=-=-=-=-=-=-=-=-=-=- searches database for course -=-=-=-=-=-=-=
-    mc.search = function() {
-      mc.courseResults = true;
-      mc.errMsg = '';
-      mc.courses = [];
-      $http.get('/api/courses?name=' + mc.capitalize(mc.courseName) + '&city=' + mc.capitalize(mc.courseCity) + '&state=' + mc.courseState.toUpperCase() + '&zipCode=' + mc.courseZip)
+    mainCtrl.search = function() {
+      mainCtrl.courseResults = true;
+      mainCtrl.errMsg = '';
+      mainCtrl.courses = [];
+      $http.get('/api/courses?name=' + mainCtrl.capitalize(mainCtrl.courseName) + '&city=' + mainCtrl.capitalize(mainCtrl.courseCity) + '&state=' + mainCtrl.courseState.toUpperCase() + '&zipCode=' + mainCtrl.courseZip)
         .then(function(returnData) {
           if(returnData.data.length>0) {
-            mc.courses = returnData.data;
-            mc.number = returnData.data.length;
+            mainCtrl.courses = returnData.data;
+            mainCtrl.number = returnData.data.length;
             if(returnData.data.length>1) {
-              mc.courseResults = false;
+              mainCtrl.courseResults = false;
             }
           }
            else {
-             mc.errMsg = "It appears there are no courses that fit that search"
+             mainCtrl.errMsg = "It appears there are no courses that fit that search"
            }
         })
 
     }
 // -=-=-=-=-=-=- capitalizes first letter of city and course names for search
-    mc.capitalize = function(str) {
+    mainCtrl.capitalize = function(str) {
       var upper = function(string) {
         return string.charAt(0).toUpperCase() + string.slice(1);
       }

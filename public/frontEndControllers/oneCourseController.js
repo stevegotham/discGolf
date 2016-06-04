@@ -4,10 +4,10 @@
       .controller('oneCourseController', ['$http', '$stateParams', '$sce','$window', oneCourseFunction])
 
   function oneCourseFunction($http,$stateParams,$sce,$window) {
-    var mc = this;
-    mc.addFav = function(course) {
+    var oneCourseCtrl = this;
+    oneCourseCtrl.addFav = function(course) {
       if(!$window.localStorage.token) {
-        mc.errMsg = "You must be logged in to add courses you've played"
+        oneCourseCtrl.errMsg = "You must be logged in to add courses you've played"
       }
       else {
         $http({
@@ -20,12 +20,12 @@
         })
       }
     }
-    mc.course = {};
-    mc.sce = $sce;
+    oneCourseCtrl.course = {};
+    oneCourseCtrl.sce = $sce;
 
     $http.get('/api/course/' + $stateParams.id)
       .then(function(response) {
-        mc.course = response.data
+        oneCourseCtrl.course = response.data
       })
   }
 }());
