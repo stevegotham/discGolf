@@ -51,21 +51,45 @@ module.exports = {
         if(err) return res.json({error: err});
         res.json(user);
       });
-    } else if(req.body.courseName) {
-      console.log("the req body", req.body)
+    } else if(req.body.name) {
       User.findById(req.decoded._id, function(err, user) {
         if(err) return res.json({error: err});
-        for(var i=0;i<user.courseInfo.length;i++) {
-          if(user.courseInfo[i].name !== req.body.courseName) {
-            console.log('no course in array')
-            // user.courseInfo.push(req.body)
-          }
-          if(user.courseInfo[i].name === req.body.courseName) {
-            // user.courseInfo[i].stats = req.body.stats
-            user.courseInfo[i].stats.push(req.body.stats)
+        if(user.courseInfo.length === 0) {
+          user.courseInfo.push(req.body)
+          user.save(function(err, user) {
+            if(err) return res.json(err);
+            res.json(user);
+          });
+        } else {
+          for(var i=user.courseInfo.length-1;i>-1;i--) {
+            if(user.courseInfo[i].name === req.body.name) {
+              var hmmm = user.courseInfo[i].stats.push(req.body.stats[0]);
+              console.log('hmmm', hmmm)
+              console.log(user.courseInfo)
+              user.markModified('courseInfo[i].stats');
+              user.save(function(err, user) {
+                if(err) return res.json(err);
+                return res.json(user);
+              });
+            }
+            else {
+              var newCourse = {
+                name: req.body.name,
+                stats: {
+                  score: req.body.stats[0].score,
+                  date: req.body.stats[0].date
+                }
+              }
+              user.courseInfo.push(newCourse);
+              user.markModified('stats');
+              user.save(function(err, user) {
+                if(err) return res.json(err);
+                res.json(user);
+              });
+            }
           }
         }
-        res.json(user)
+
       })
     }
   },

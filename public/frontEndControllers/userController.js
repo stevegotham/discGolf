@@ -9,11 +9,19 @@
     mc.info = true;
     $http.get('/user/' + $stateParams.id)
       .then(function(response) {
-        mc.user = response.data
+        mc.user = response.data;
       })
-    mc.addStats = function(course) {
-      mc.info = !mc.info
-      mc.thisOne = course
+    mc.viewStats = function(course) {
+      mc.info = !mc.info;
+      mc.currentCourse = course;
+      var best = mc.user.courseInfo[0].stats;
+      for(var i=0;i<mc.user.courseInfo.length;i++) {
+        if(mc.user.courseInfo[i].stats.score<best.score) {
+          best.score = mc.user.courseInfo[i].stats.score;
+          best.date = mc.user.courseInfo[i].stats.date
+        }
+      }
+      mc.best = best
     }
 
       // -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=- function to update user stats in database
@@ -23,7 +31,7 @@
         method: 'PATCH',
         url: '/user/:id',
         data: {
-          courseName: course.name,
+          name: course.name,
           stats: [{
             date: mc.date,
             score: mc.score

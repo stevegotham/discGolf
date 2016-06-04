@@ -16,6 +16,12 @@ li {
   margin-top: 15px;
 }
 
+#bar {
+  height: 6px;
+  background-color: #2BBBAD;
+  margin-left: -25px;
+}
+
 .header {
   border-bottom: 1px #2BBBAD solid;
 }
@@ -54,7 +60,7 @@ header button {
   margin-left: 30px;
   margin-top: 10px;
 }
-#buttons input {
-  /*margin-left: 30px;*/
+
+#cancel {
   margin-top: 10px;
 }
