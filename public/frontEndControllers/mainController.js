@@ -39,9 +39,9 @@
         method: 'POST',
         url: '/users',
         data: {
-          name: mc.realName.toLowerCase(),
-          username: mc.username.toLowerCase(),
-          email: mc.email.toLowerCase(),
+          name: mc.realName,
+          username: mc.username,
+          email: mc.email,
           password: mc.password
         }
       }).then(function(response) {
@@ -61,7 +61,7 @@
         method: "POST",
         url: '/user/:id',
         data: {
-          username: mc.username.toLowerCase(),
+          username: mc.username,
           password: mc.password
         }
       }).then(function(response) {

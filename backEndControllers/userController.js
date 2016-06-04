@@ -52,44 +52,33 @@ module.exports = {
         res.json(user);
       });
     } else if(req.body.name) {
-      User.findById(req.decoded._id, function(err, user) {
+      User.findById(req.decoded._id).populate('favCourses').exec(function(err, user) {
         if(err) return res.json({error: err});
         if(user.courseInfo.length === 0) {
-          user.courseInfo.push(req.body)
-          user.save(function(err, user) {
-            if(err) return res.json(err);
-            res.json(user);
-          });
+          user.courseInfo.push(req.body);
+          user.save();
+          return res.json(user);
         } else {
           for(var i=user.courseInfo.length-1;i>-1;i--) {
             if(user.courseInfo[i].name === req.body.name) {
-              var hmmm = user.courseInfo[i].stats.push(req.body.stats[0]);
-              console.log('hmmm', hmmm)
-              console.log(user.courseInfo)
-              user.markModified('courseInfo[i].stats');
-              user.save(function(err, user) {
-                if(err) return res.json(err);
-                return res.json(user);
-              });
-            }
-            else {
-              var newCourse = {
-                name: req.body.name,
-                stats: {
-                  score: req.body.stats[0].score,
-                  date: req.body.stats[0].date
-                }
-              }
-              user.courseInfo.push(newCourse);
-              user.markModified('stats');
-              user.save(function(err, user) {
-                if(err) return res.json(err);
-                res.json(user);
-              });
+              user.courseInfo[i].stats.push(req.body.stats[0]);
+              user.markModified('courseInfo');
+              user.save();
+              return res.json(user);
             }
           }
+          var newCourse = {
+            name: req.body.name,
+            stats: [{
+              score: req.body.stats[0].score,
+              date: req.body.stats[0].date
+            }]
+          }
+          user.courseInfo.push(newCourse);
+          user.markModified('courseInfo');
+          user.save();
+          return res.json(user);
         }
-
       })
     }
   },

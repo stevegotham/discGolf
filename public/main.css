@@ -6,7 +6,12 @@ body {
 li {
   list-style-type: : circle;
 }
-
+.accent {
+  color: #2BBBAD;
+}
+.accentBorder {
+  border-bottom: 5px #2BBBAD solid;
+}
 #sidebar {
   height: 500px;
   width: 10px;

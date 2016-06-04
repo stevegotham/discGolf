@@ -1,51 +1,56 @@
 
-<div class="row" ng-show="mc.info">
-  <h1>{{ mc.user.username }}</h1>
+<div class="row" ng-show="uc.info">
+  <h1><span class="accentBorder">{{ uc.user.username }}</span></h1>
   <div class="col s6">
     <ul>
-      <li><h5>Best round:</h5> -2 @ Valmont Disc Park</li>
-      <li><h5>Most played course:</h5> Edora Park</li>
+      <li><h5>Best round:</h5> {{ uc.profileBestScore }} @ {{ uc.profileBestCourse }}<br>
+      on {{ uc.profileBestDate | date: shortDate }}</li>
+      <li><h5>Most played course:</h5> {{ uc.profileMostPlayed }}</li>
     </ul>
   </div>
   <div class="col s6">
     <h5>Your courses:</h5>
     <ul>
-      <!-- <li ng-repeat="fav in mc.user.favCourses"><span ng-click="mc.addStats(fav)">{{ fav.name }}</span></li> -->
-      <li ng-repeat="fav in mc.user.favCourses"><span ng-click="mc.viewStats(fav)">{{ fav.name }}</span></li>
+      <li ng-repeat="fav in uc.user.favCourses" class="accent"><span ng-click="uc.viewStats(fav)">{{ fav.name }}</span></li>
     </ul>
   </div>
   <div class="col s12" id="buttons">
     <a ui-sref="search"><button class="waves-effect waves-light btn">Search for courses</button></a>
-    <button ng-click="mc.logOut()" class="waves-effect waves-light btn">Logout</button>
-    <button ng-click="mc.deleteUser(mc.user)" class="waves-effect waves-light btn">Delete Account</button>
+    <button ng-click="uc.logOut()" class="waves-effect waves-light btn">Logout</button>
+    <button ng-click="uc.deleteUser(uc.user)" class="waves-effect waves-light btn">Delete Account</button>
   </div>
 </div>
 
-<div class="row" ng-hide="mc.info">
-  <h1>{{ mc.user.username }}</h1>
+<div class="row" ng-hide="uc.info">
+  <h1><span class="accentBorder">{{ uc.user.username }}</span></h1>
 
-  <h4>{{ mc.currentCourse.name }}</h4>
+  <h4>{{ uc.currentCourse.name }}</h4>
 
-  <h5>Stats:</h5>
-  <span>Best Round: {{ mc.best.score }} on {{ mc.best.date | date: shortDate }}</span>
+  <span>Best Round: {{ uc.bestScore }} on {{ uc.bestDate | date: shortDate }}</span>
   <br>
   <br>
+  <ul>
+    <span ng-click="uc.showStatsNow()" class="bold accent" > {{ uc.action }}</span>
+    <li ng-repeat="stat in uc.currentCourse.stats | orderBy : date" ng-hide="uc.showStats">
+      {{ stat.score }} on {{ stat.date | date: shortDate }}
+    </li>
+  </ul>
   <div class="col s12">
     <div id="bar" class="col s9"></div>
   </div>
   <h5 class="col s12">Record your latest round:</h5>
-  <form ng-submit="mc.submitStats(mc.currentCourse)">
+  <form ng-submit="uc.submitStats(uc.currentCourse)">
     <div class="input-field col s8">
-      <input type="number" ng-model="mc.score">
+      <input type="number" ng-model="uc.score" required="true">
     </div>
     <div class="input-field col s8">
-      <input  type="date" ng-model="mc.date" class="datepicker">
+      <input type="date" ng-model="uc.date" class="datepicker" required="true">
     </div>
     <div id="buttons" class="col s12">
       <input type="submit" class="waves-effect waves-light btn">
     </div>
   </form>
   <div id="cancel" class="col s12">
-    <button ng-click="mc.info = !mc.info" class="waves-effect waves-light btn">Back</button>
+    <button ng-click="uc.backButton()" class="waves-effect waves-light btn">Back</button>
   </div>
 </div>

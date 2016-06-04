@@ -50,7 +50,7 @@
         .state('profile', {
           url: '/user/:id',
           templateUrl: 'html/profile.html',
-          controller: 'userController as mc'
+          controller: 'userController as uc'
         })
         .state('search', {
           url: '/search',
@@ -65,7 +65,7 @@
         .state('user', {
           url: '/user/:id',
           templateUrl: 'html/profile.html',
-          controller: 'userController as mc'
+          controller: 'userController as uc'
         })
 
         $urlRouterProvider.otherwise('/')
