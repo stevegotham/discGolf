@@ -3,13 +3,13 @@
   <h1><span class="accentBorder">{{ userCtrl.user.username }}</span></h1>
   <div class="col s6">
     <ul>
-      <li><h5>Best round:</h5> {{ userCtrl.profileBestScore }} @ {{ userCtrl.profileBestCourse }}<br>
+      <li><h5>Best round:</h5> <span ng-show="userCtrl.profileBestScore > 0">+</span><span ng-show="userCtrl.profileBestScore !== 0">{{ userCtrl.profileBestScore }}</span><span ng-show="userCtrl.profileBestScore === 0">Even</span> @ {{ userCtrl.profileBestCourse }}<br>
       on {{ userCtrl.profileBestDate | date: shortDate }}</li>
       <li><h5>Most played course:</h5> {{ userCtrl.profileMostPlayed }}</li>
     </ul>
   </div>
   <div class="col s6">
-    <h5>Your courses</h5>
+    <h5>Your courses</h5><span ng-show="userCtrl.user.favCourses.length === 0"> will appear here</span>
     <ul>
       <li ng-repeat="fav in userCtrl.user.favCourses" class="accent"><span ng-click="userCtrl.viewStats(fav)">{{ fav.name }}</span></li>
     </ul>
@@ -25,13 +25,13 @@
   <h1><span class="accentBorder">{{ userCtrl.user.username }}</span></h1>
   <button ng-click="userCtrl.backButton()" class="waves-effect waves-light btn">Back</button>
   <h4>{{ userCtrl.currentCourse.name }}</h4>
-  <span>Best Round: {{ userCtrl.bestScore }} on {{ userCtrl.bestDate | date: shortDate }}</span>
+  <span>Best Round: <span ng-show="userCtrl.bestScore > 0">+</span><span ng-show="userCtrl.bestScore !== 0">{{ userCtrl.bestScore }}</span><span ng-show="userCtrl.bestScore === 0">Even</span> on {{ userCtrl.bestDate | date: shortDate }}</span>
   <br>
   <br>
   <ul>
     <span ng-click="userCtrl.swapAction()" class="bold accent" > {{ userCtrl.action }}</span>
     <li ng-repeat="stat in userCtrl.currentCourse.stats | orderBy: '-'" ng-hide="userCtrl.showStats">
-      {{ stat.score }} on {{ stat.date | date: shortDate }}
+      <span ng-show="stat.score > 0">+</span><span ng-show="stat.score !== 0">{{ stat.score }}</span><span ng-show="stat.score === 0">Even</span> on {{ stat.date | date: shortDate }}
     </li>
   </ul>
   <div class="col s12">

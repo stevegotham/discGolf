@@ -14,7 +14,7 @@
     $http.get('/user/' + $stateParams.id)
       .then(function(response) {
         userCtrl.user = response.data;
-        userCtrl.profileBestScore = 125;
+        userCtrl.profileBestScore = 25;
         userCtrl.profileBestDate = "a rough day many years ago";
         userCtrl.profileBestCourse = "Some God-awful course"
         userCtrl.profileMost = 0;
@@ -37,7 +37,7 @@
     userCtrl.viewStats = function(course) {
       userCtrl.info = !userCtrl.info;
       userCtrl.currentCourse = course;
-      userCtrl.bestScore = 125;
+      userCtrl.bestScore = 25;
       userCtrl.bestDate = "a rough day, many years ago";
       for(var i=0;i<userCtrl.user.courseInfo.length;i++) {
         if(userCtrl.user.courseInfo[i].name === course.name) {
@@ -104,9 +104,10 @@
       $http.delete('user/:id')
         .then(function(err, response) {
           if(err) console.log('err', err);
-          $window.localStorage.removeItem('token')
-          $window.localStorage.removeItem('_id')
-          $state.go('home');
+          // $window.localStorage.removeItem('token')
+          // $window.localStorage.removeItem('_id')
+          // $state.go('home');
+          userCtrl.logOut();
         })
     }
     // -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=- log out -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
