@@ -1,6 +1,6 @@
 (function() {
   'use strict';
-  angular.module('discGolfApp', ['ui.router','mainController','oneCourseController', 'userController'])
+  angular.module('discGolfApp', ['ui.router','mainController','oneCourseController', 'userController','chart.js'])
     .config(routerConfig)
     .factory('AuthInterceptor', function($q, $location, $window) {
     	var interceptorFactory = {};

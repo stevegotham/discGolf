@@ -1,6 +1,6 @@
 /*-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= elements -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=*/
 body {
-  font-family: Robotu;
+  font-family: serif;
   font-size: 1.2em;
 }
 li {
@@ -54,9 +54,23 @@ header button {
   background-color: #2BBBAD;
   margin-left: -25px;
 }
-#buttons input {
-  margin-left: -13px;
+#buttons input, button {
+  margin-top: 25px;
 }
 #cancel {
   margin-top: 10px;
+}
+#chart {
+  margin-top: -145px;
+}
+#logo {
+  width: 100%;
+  margin-left: -200px;
+  margin-top: 10px;
+}
+#golfer {
+  width: 100%;
+}
+#home {
+  margin-top: -220px;
 }

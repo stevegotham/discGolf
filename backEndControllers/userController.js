@@ -5,6 +5,7 @@ var jwt             = require('jsonwebtoken');
 var mySpecialSecret = "ching";
 // -=-=-=-=-=-=-=-=- the object/methods exported to routes.js -=-=-=-=-=-=
 module.exports = {
+
 // -=-=-=-=-=-=-=-=- add a user to the database -=-=-=-=-=-=-=-=-=-=-
   add : function(req, res) {
     var newUser = new User(req.body);

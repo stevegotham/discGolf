@@ -23,30 +23,42 @@
 <!-- -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= course info =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=- -->
 <div class="row" ng-hide="userCtrl.info">
   <h1><span class="accentBorder">{{ userCtrl.user.username }}</span></h1>
-  <button ng-click="userCtrl.backButton()" class="waves-effect waves-light btn">Back</button>
-  <h4>{{ userCtrl.currentCourse.name }}</h4>
-  <span>Best Round: <span ng-show="userCtrl.bestScore > 0">+</span><span ng-show="userCtrl.bestScore !== 0">{{ userCtrl.bestScore }}</span><span ng-show="userCtrl.bestScore === 0">Even</span> on {{ userCtrl.bestDate | date: shortDate }}</span>
+  <div class="col s12">
+    <h4 class="col s4">{{ userCtrl.currentCourse.name }}</h4>
+  </div>
+  <span class="col s12"><span>Best Round: <span ng-show="userCtrl.bestScore > 0">+</span><span ng-show="userCtrl.bestScore !== 0">{{ userCtrl.bestScore }}</span><span ng-show="userCtrl.bestScore === 0">Even</span> on {{ userCtrl.bestDate | date: shortDate }}</span></span>
   <br>
   <br>
-  <ul>
+  <!-- <ul>
     <span ng-click="userCtrl.swapAction()" class="bold accent" > {{ userCtrl.action }}</span>
     <li ng-repeat="stat in userCtrl.currentCourse.stats | orderBy: '-'" ng-hide="userCtrl.showStats">
       <span ng-show="stat.score > 0">+</span><span ng-show="stat.score !== 0">{{ stat.score }}</span><span ng-show="stat.score === 0">Even</span> on {{ stat.date | date: shortDate }}
     </li>
-  </ul>
-  <div class="col s12">
+  </ul> -->
+  <!-- -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= graph -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-->
+
+  <!-- -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=- submit score form -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=- -->
+  <!-- <div class="col s12">
     <div id="bar" class="col s9"></div>
-  </div>
-  <h5 class="col s12">Record your latest round</h5>
-  <form ng-submit="userCtrl.submitStats(userCtrl.currentCourse)">
-    <div class="input-field col s8">
-      <input type="number" ng-model="userCtrl.score" required="true">
+  </div> -->
+  <!-- <h5 class="col s4">Record your latest round</h5> -->
+  <form ng-submit="userCtrl.submitStats(userCtrl.currentCourse)" class="col s4">
+    <div class="input-field col s12">
+      <input type="number" ng-model="userCtrl.score" required="true" placeholder="Score">
     </div>
-    <div class="input-field col s8">
+    <div class="input-field col s12">
       <input type="date" ng-model="userCtrl.date" class="datepicker" required="true">
     </div>
     <div id="buttons" class="col s12">
       <input type="submit" class="waves-effect waves-light btn">
+      <button ng-click="userCtrl.backButton()" class="waves-effect waves-light btn">Back</button>
     </div>
   </form>
+  <!-- <div class="col s12"> -->
+    <div class="col s8">
+      <canvas id="chart" class="chart chart-line" chart-data="userCtrl.data"
+        chart-labels="userCtrl.labels" chart-legend="true" chart-series="userCtrl.series" height="300" width="600">
+      </canvas>
+    </div>
+  <!-- </div> -->
 </div>

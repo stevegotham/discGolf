@@ -10,9 +10,11 @@
   "author": "steve gotham",
   "license": "ISC",
   "dependencies": {
+    "angular-chart.js": "^1.0.0-alpha6",
     "angular-cookies": "^1.5.5",
     "bcryptjs": "^2.3.0",
     "body-parser": "^1.15.1",
+    "chart.js": "^2.1.4",
     "express": "^4.13.4",
     "jsonwebtoken": "^7.0.0",
     "mongoose": "^4.4.19",

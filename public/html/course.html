@@ -4,12 +4,12 @@
       <li><h3>{{oneCourseCtrl.course.name }}</h3></li>
       <li><h4>{{ oneCourseCtrl.course.city }}, {{ oneCourseCtrl.course.state }}</h4></li>
       <li><h5>{{ oneCourseCtrl.course.holes }} holes</h5></li>
-      <li><h5>{{ oneCourseCtrl.course.teeTypes || "Unknown" }} tees</h5></li>
+      <li><h5>{{ oneCourseCtrl.course.teeTypes || "No info for type of" }} tees</h5></li>
       <span class="bold">Description: </span><li ng-bind-html="oneCourseCtrl.sce.trustAsHtml(oneCourseCtrl.course.description)"></li>
       <span class="bold">Directions: </span><li ng-bind-html="oneCourseCtrl.sce.trustAsHtml(oneCourseCtrl.course.directions)"></li>
     </ul>
   </div>
-  <!-- <div class="col s4" id="map"></div> -->   
+  <!-- <div class="col s4" id="map"></div> -->
 </div>
 <button ng-hide="oneCourseCtrl.loggedIn" ng-click="oneCourseCtrl.addFav(oneCourseCtrl.course)" class="waves-effect waves-light btn">Add to your courses</button>
 <a ui-sref="search"><button class="waves-effect waves-light btn">Search Again</button></a>

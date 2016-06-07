@@ -1,10 +1,18 @@
 (function() {
   'use strict';
-    angular.module('userController', [])
+    angular.module('userController', ['chart.js'])
       .controller('userController', ['$http', '$stateParams','$window','$state', userFunc])
 
   function userFunc($http, $stateParams, $window, $state) {
     var userCtrl = this;
+    console.log(Chart.defaults)
+    Chart.defaults.global.elements.line.fill = false;
+    Chart.defaults.global.elements.line.tension = .3;
+    Chart.defaults.global.elements.line.borderWidth = 4;
+    Chart.defaults.global.elements.line.borderColor = "#2BBBAD";
+    Chart.defaults.global.elements.point.radius = 4;
+    Chart.defaults.global.elements.point.borderColor = "#000";
+    Chart.defaults.global.elements.point.backgroundColor = "#2BBBAD";
 
     userCtrl.info = true;
     userCtrl.date = new Date();
@@ -50,6 +58,28 @@
           }
         }
       }
+      // userCtrl.graphInfo();
+      userCtrl.data = (function() {
+        var returnData = [];
+        for(var i=0;i<userCtrl.currentCourse.stats.length;i++) {
+        returnData.push(userCtrl.currentCourse.stats[i].score)
+        };
+        return returnData;
+      }());
+
+      userCtrl.labels = (function(){
+        var returnDates = [];
+        for(var i=0;i<userCtrl.currentCourse.stats.length;i++) {
+          var date = userCtrl.currentCourse.stats[i].date.slice(0,userCtrl.currentCourse.stats[i].date.indexOf('T'));
+          function reverse (str) {
+            var returnStr = str.split('-');
+            return returnStr.reverse().join('-');
+          }
+          returnDates.push(reverse(date))
+        }
+        return returnDates;
+      }());
+
     }
     // -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=- swap value of 'userCtrl.action' variable -=-=-=-=-=-=-=-=-=-
     userCtrl.swapAction = function() {
@@ -116,5 +146,33 @@
       $window.localStorage.removeItem('_id')
       $state.go('home')
     }
+    // -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=- graph -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+    // userCtrl.width = 700;
+    // userCtrl.height = 200;
+    // userCtrl.yAxis = "Scores";
+    // userCtrl.xAxis = "Dates";
+    // -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=- find max to use in visualization -=-=-=-=-=-=-=-
+    // userCtrl.graphInfo = function() {
+    //   userCtrl.max =  15;
+    //   userCtrl.min = -15;
+    //   var arrLength = userCtrl.currentCourse.stats.length;
+    //   for (var i = 0; i < arrLength; i++) {
+    //     // Find Maximum X Axis Value
+    //     if (userCtrl.currentCourse.stats[i].score > userCtrl.max) {
+    //       console.log('bigger')
+    //       userCtrl.max = userCtrl.currentCourse.stats[i].score;
+    //     }
+    //   }
+    // }
+    // userCtrl.labels = ["January", "February", "March", "April", "May", "June", "July"];
+    // userCtrl.series = ['Series A', 'Series B'];
+    userCtrl.colors =  [{
+    fillColor: 'rgba(0, 0, 0, 0.8)',
+    strokeColor: 'rgba(47, 132, 71, 0.8)',
+    highlightFill: 'rgba(47, 132, 71, 0.8)',
+    highlightStroke: 'rgba(47, 132, 71, 0.8)'
+    }];
+
+    // -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=- closing tags -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
   }
 }());
