@@ -1,9 +1,9 @@
 (function() {
   'use strict';
-    angular.module('oneCourseController', [])
-      .controller('oneCourseController', ['$http', '$stateParams', '$sce','$window', oneCourseFunction])
+    angular.module('oneCourseController', ['ngMap'])
+      .controller('oneCourseController', ['$http', '$stateParams', '$sce','$window','NgMap', oneCourseFunction])
 
-  function oneCourseFunction($http,$stateParams,$sce,$window) {
+  function oneCourseFunction($http,$stateParams,$sce,$window,NgMap) {
     var oneCourseCtrl = this;
 
     oneCourseCtrl.course = {};
@@ -26,10 +26,13 @@
         })
       }
     }
-    // -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=- function to retrieve a single course from database -=-=-=-=-=-=-=-=-=-=-=-=-=
+    // -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= function to retrieve a single course from database -=-=-=-=-=-=-=-=-=-=-=-=-=
     $http.get('/api/course/' + $stateParams.id)
       .then(function(response) {
         oneCourseCtrl.course = response.data
       })
+      // -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=- map -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+    NgMap.getMap();
+// -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=- closing tags -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
   }
 }());

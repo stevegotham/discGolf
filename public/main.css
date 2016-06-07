@@ -40,6 +40,15 @@ header button {
 .error {
   color: red;
 }
+.pad {
+  margin: 5px 0;
+}
+.negTopMrgn {
+  margin-top: -20px;
+}
+.map {
+  margin-top: 60px;
+}
 /*-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=- ids -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=*/
 #sidebar {
   height: 500px;

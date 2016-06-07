@@ -1,16 +1,20 @@
 <div class="row">
-  <div class="col s8">
+  <div class="col s6">
     <ul>
-      <li><h3>{{oneCourseCtrl.course.name }}</h3></li>
+      <li><h3 class="accent">{{ oneCourseCtrl.course.name }}</h3></li>
       <li><h4>{{ oneCourseCtrl.course.city }}, {{ oneCourseCtrl.course.state }}</h4></li>
       <li><h5>{{ oneCourseCtrl.course.holes }} holes</h5></li>
       <li><h5>{{ oneCourseCtrl.course.teeTypes || "No info for type of" }} tees</h5></li>
-      <span class="bold">Description: </span><li ng-bind-html="oneCourseCtrl.sce.trustAsHtml(oneCourseCtrl.course.description)"></li>
-      <span class="bold">Directions: </span><li ng-bind-html="oneCourseCtrl.sce.trustAsHtml(oneCourseCtrl.course.directions)"></li>
+      <span class="bold">Description: </span><li class="pad" ng-bind-html="oneCourseCtrl.sce.trustAsHtml(oneCourseCtrl.course.description)"></li>
+      <span class="bold">Directions: </span><li class="pad" ng-bind-html="oneCourseCtrl.sce.trustAsHtml(oneCourseCtrl.course.directions)"></li>
     </ul>
   </div>
-  <!-- <div class="col s4" id="map"></div> -->
+  <ng-map center="{{oneCourseCtrl.course.lat}},{{oneCourseCtrl.course.long}}" class="col s6 map">
+    <marker position="{{oneCourseCtrl.course.lat}},{{oneCourseCtrl.course.long}}"></marker>
+  </ng-map>
 </div>
-<button ng-hide="oneCourseCtrl.loggedIn" ng-click="oneCourseCtrl.addFav(oneCourseCtrl.course)" class="waves-effect waves-light btn">Add to your courses</button>
-<a ui-sref="search"><button class="waves-effect waves-light btn">Search Again</button></a>
-<h4 class="error">{{ oneCourseCtrl.errMsg }}</h4>
+<div class="negTopMrgn">
+  <button ng-hide="oneCourseCtrl.loggedIn" ng-click="oneCourseCtrl.addFav(oneCourseCtrl.course)" class="waves-effect waves-light btn">Add to your courses</button>
+  <a ui-sref="search"><button class="waves-effect waves-light btn">Search Again</button></a>
+  <h4 class="error">{{ oneCourseCtrl.errMsg }}</h4>
+</div>
