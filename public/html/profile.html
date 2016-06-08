@@ -3,7 +3,7 @@
   <h1 closs="col s12"><span class="accentBorder">{{ userCtrl.user.username }}</span></h1>
   <div class="col s12 col m6">
     <ul>
-      <li><h5>Best round:</h5> <span ng-show="userCtrl.profileBestScore > 0">+</span><span ng-show="userCtrl.profileBestScore !== 0">{{ userCtrl.profileBestScore }}</span><span ng-show="userCtrl.profileBestScore === 0">Even</span> @ {{ userCtrl.profileBestCourse }}<br>
+      <li><h5>Best round:</h5> <span ng-show="userCtrl.profileBestScore > 0">+</span><span ng-show="userCtrl.profileBestScore !== 0">{{ userCtrl.profileBestScore }}</span><span ng-show="userCtrl.profileBestScore === 0">Even</span> <span class="accent">@</span> {{ userCtrl.profileBestCourse }}<br>
       on {{ userCtrl.profileBestDate | date: shortDate }}</li>
       <li><h5>Most played course:</h5> {{ userCtrl.profileMostPlayed }}</li>
     </ul>
@@ -11,7 +11,7 @@
   <div class="col s12 col m6">
     <h5>Your courses</h5><span ng-show="userCtrl.user.favCourses.length === 0"> will appear here</span>
     <ul>
-      <li ng-repeat="fav in userCtrl.user.favCourses" class="accent"><span ng-click="userCtrl.viewStats(fav)">{{ fav.name }}</span></li>
+      <li ng-repeat="fav in userCtrl.user.favCourses" class="accent pseudoLink"><span ng-click="userCtrl.viewStats(fav)">{{ fav.name }}</span></li>
     </ul>
   </div>
   <div class="col s12" id="buttons">
@@ -29,8 +29,7 @@
   <br>
 
   <!-- -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=- submit score form -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=- -->
-  <!-- <h5 class="col s4">Record your latest round</h5> -->
-  <form ng-submit="userCtrl.submitStats(userCtrl.currentCourse)" class="col s12 col m6 col l4">
+  <form id="scoreForm" ng-submit="userCtrl.submitStats(userCtrl.currentCourse)" class="col s12 col m6 col l4">
     <div class="input-field col s12">
       <input type="number" ng-model="userCtrl.score" required="true" placeholder="Score">
     </div>

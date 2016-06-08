@@ -3,15 +3,18 @@ body {
   font-family: serif;
   font-size: 1.6em;
 }
-li {
-  list-style-type: : circle;
-}
 header h1, button {
   display: inline-block;
 }
 header button {
   margin-right: 10px;
   margin-top: 15px;
+}
+a {
+  color: #2BBBAD;
+}
+a:hover {
+  color: #2E90A4;
 }
 /*-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= classes -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=*/
 .show {
@@ -49,6 +52,9 @@ header button {
 .map {
   margin-top: 60px;
 }
+.pseudoLink:hover {
+  color: #2E90A4;
+}
 /*-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=- ids -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=*/
 #sidebar {
   height: 500px;
@@ -84,9 +90,10 @@ header button {
 #golfer {
   width: 100%;
 }
-/*#home {
-  margin-top: -220px;
-}*/
+#scoreForm input {
+  font-size: 1em;
+}
+/* -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=- media queries -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=*/
 @media (max-width: 1100px) {
   #sidebar , #golfer{
     display: none;
@@ -106,8 +113,3 @@ header button {
     margin-left: 0;
   }
 }
-/*@media (max-width: 500px) {
-  #intro, #golfer {
-    display: none;
-  }
-}*/
