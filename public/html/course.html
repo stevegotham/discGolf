@@ -1,5 +1,5 @@
 <div class="row">
-  <div class="col s12 col m6">
+  <div class="col s12 col l6">
     <ul>
       <li><h3 class="accent">{{ oneCourseCtrl.course.name }}</h3></li>
       <li><h4>{{ oneCourseCtrl.course.city }}, {{ oneCourseCtrl.course.state }}</h4></li>
@@ -10,7 +10,7 @@
     </ul>
   </div>
   <div id="mapContainer">
-    <ng-map #id="map" center="{{oneCourseCtrl.course.lat}},{{oneCourseCtrl.course.long}}" class="col s6 map">
+    <ng-map #id="map" center="{{oneCourseCtrl.course.lat}},{{oneCourseCtrl.course.long}}" class="col s12 l6 map">
       <marker position="{{oneCourseCtrl.course.lat}},{{oneCourseCtrl.course.long}}"></marker>
     </ng-map>
   </div>
