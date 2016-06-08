@@ -45,7 +45,6 @@
           password: mainCtrl.password
         }
       }).then(function(response) {
-        console.log('res: ', response)
         if(response.data.code === 11000) {
           mainCtrl.errMsg = "There is already a user with that username";
         } else {
@@ -65,7 +64,6 @@
           password: mainCtrl.password
         }
       }).then(function(response) {
-        // console.log('login response', response)
         if(response.data.message) {
           mainCtrl.errMsg = response.data.message
         } else {

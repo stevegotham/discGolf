@@ -65,12 +65,7 @@
           templateUrl: 'html/course.html',
           controller: 'oneCourseController as oneCourseCtrl'
         })
-        // .state('user', {
-        //   url: '/user/:id',
-        //   templateUrl: 'html/profile.html',
-        //   controller: 'userController as userCtrl'
-        // })
-
+        
         $urlRouterProvider.otherwise('/')
     }
 }());

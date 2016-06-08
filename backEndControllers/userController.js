@@ -5,7 +5,6 @@ var jwt             = require('jsonwebtoken');
 var mySpecialSecret = "ching";
 // -=-=-=-=-=-=-=-=- the object/methods exported to routes.js -=-=-=-=-=-=
 module.exports = {
-
 // -=-=-=-=-=-=-=-=- add a user to the database -=-=-=-=-=-=-=-=-=-=-
   add : function(req, res) {
     var newUser = new User(req.body);
@@ -89,11 +88,11 @@ module.exports = {
       })
     }
   },
-// -=-=-=-=-=-=-=- mark "deleted" property on user to "true" -=-=-=-=-=-=
+// -=-=-=-=-=-=-=- change "deleted" property on user to "true" -=-=-=-=-=-=
   delete : function(req, res) {
     User.findOneAndUpdate({_id: req.decoded._id}, {deleted: true, username: req.decoded._id}, function(err) {
       if(err) return res.send(err);
       res.json({message: "User has been deleted"});
     })
-  },
+  }
 }

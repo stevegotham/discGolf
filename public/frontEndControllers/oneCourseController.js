@@ -9,7 +9,6 @@
     oneCourseCtrl.course = {};
     // -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= this variable is used to parse the descriptions of courses from database -=-=-=-=-
     oneCourseCtrl.sce = $sce;
-
     // -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=- function to add course to player's array of courses -=-=-=-=-=-=-=-=-=-=-=-=-=
     oneCourseCtrl.addFav = function(course) {
       if(!$window.localStorage.token) {

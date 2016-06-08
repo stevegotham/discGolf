@@ -17,7 +17,6 @@
     userCtrl.info = true;
     userCtrl.date = new Date();
     userCtrl.showStats = true;
-    userCtrl.action = "Show All Rounds";
     // -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=- queries database for user info to display in profile view -=-=-=-=-=-=-=-=-=-=-
     $http.get('/user/' + $stateParams.id)
       .then(function(response) {
@@ -93,13 +92,11 @@
     userCtrl.backButton = function() {
       userCtrl.info = !userCtrl.info;
       userCtrl.showStats = true;
-      userCtrl.action = "Show All Rounds";
     }
       // -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=- function to update user stats in database -=-=-=-=-=-=-=-=-=-=-
     userCtrl.submitStats = function(course) {
       userCtrl.info = !userCtrl.info;
       userCtrl.showStats = true;
-      userCtrl.action = "Show All Rounds";
       $http({
         method: 'PATCH',
         url: '/user/:id',

@@ -1,4 +1,4 @@
-<!-- -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=- user info -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= -->
+<!-- -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=- user info -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= -->
 <div ng-show="userCtrl.info">
   <h1 closs="col s12"><span class="accentBorder">{{ userCtrl.user.username }}</span></h1>
   <div class="col s12 col m6">
@@ -28,7 +28,7 @@
   <br>
   <br>
 
-  <!-- -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=- submit score form -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=- -->
+  <!-- -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=- submit score form -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=- -->
   <form id="scoreForm" ng-submit="userCtrl.submitStats(userCtrl.currentCourse)" class="col s12 col m6 col l4">
     <div class="input-field col s12">
       <input type="number" ng-model="userCtrl.score" required="true" placeholder="Score">
@@ -41,12 +41,10 @@
       <button ng-click="userCtrl.backButton()" class="waves-effect waves-light btn media col s12">Back</button>
     </div>
   </form>
-  <!-- -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= graph -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-->
-  <!-- <div class="col s12"> -->
-    <div class="col s12 col m10 col l8">
-      <canvas id="chart" class="chart chart-line" chart-data="userCtrl.data"
-        chart-labels="userCtrl.labels" chart-legend="true" chart-series="userCtrl.series" height="300" width="600">
-      </canvas>
-    </div>
-  <!-- </div> -->
+  <!-- -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=- graph -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-->
+  <div class="col s12 col m10 col l8">
+    <canvas id="chart" class="chart chart-line" chart-data="userCtrl.data"
+      chart-labels="userCtrl.labels" chart-legend="true" chart-series="userCtrl.series" height="300" width="600">
+    </canvas>
+  </div>
 </div>
