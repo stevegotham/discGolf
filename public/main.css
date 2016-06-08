@@ -1,7 +1,7 @@
 /*-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= elements -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=*/
 body {
   font-family: serif;
-  font-size: 1.2em;
+  font-size: 1.6em;
 }
 li {
   list-style-type: : circle;
@@ -14,6 +14,9 @@ header button {
   margin-top: 15px;
 }
 /*-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= classes -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=*/
+.show {
+  border: 3px red solid;
+}
 .accent {
   color: #2BBBAD;
 }
@@ -23,16 +26,13 @@ header button {
 .header {
   border-bottom: 1px #2BBBAD solid;
 }
-.show {
-  border: 3px red solid;
-}
 .bold {
   font-weight: bold;
 }
 .noLink {
   text-decoration: none;
   color: black;
-  margin-left: 50px;
+  /*margin-left: 50px;*/
 }
 .block {
   display: block;
@@ -66,20 +66,48 @@ header button {
 #buttons input, button {
   margin-top: 25px;
 }
+#buttons2 input, button {
+  margin-top: 25px;
+}
 #cancel {
   margin-top: 10px;
 }
 #chart {
   margin-top: -145px;
+  height: 300px;
 }
 #logo {
   width: 100%;
-  margin-left: -200px;
+  margin-left: -140px;
   margin-top: 10px;
 }
 #golfer {
   width: 100%;
 }
-#home {
+/*#home {
   margin-top: -220px;
+}*/
+@media (max-width: 1100px) {
+  #sidebar , #golfer{
+    display: none;
+  }
+  #logo {
+    margin-left: -40px;
+  }
+  #chart {
+    margin-top: 20px;
+  }
 }
+@media (max-width: 700px) {
+  #mapContainer {
+    display: none;
+  }
+  #logo {
+    margin-left: 0;
+  }
+}
+/*@media (max-width: 500px) {
+  #intro, #golfer {
+    display: none;
+  }
+}*/

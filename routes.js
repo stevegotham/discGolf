@@ -33,7 +33,7 @@ router.use(function(req, res, next){
 })
 // -=-=-=-=-=-=-=-=-=-=-=- single user -=-=-=-=-=-=-=-=-=-
 router.route('/user/:id')
-  .get(userCtrl.findOne)
+  .get(userCtrl.addCourse)
   .patch(userCtrl.update)
   .delete(userCtrl.delete)
 // -=-=-=-=-=-=-=-=- export -=-=-=-=-=-=-=-=-=

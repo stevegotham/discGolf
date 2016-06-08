@@ -58,7 +58,6 @@
           }
         }
       }
-      // userCtrl.graphInfo();
       function order (str) {
         var tempArr = [];
         var returnStr = str.split('-');
@@ -71,7 +70,6 @@
           var date = userCtrl.currentCourse.stats[i].date.slice(0,userCtrl.currentCourse.stats[i].date.indexOf('T'));
           orderedStats.push({date: order(date), score: userCtrl.currentCourse.stats[i].score})
         };
-        console.log(orderedStats[0].date)
         orderedStats.sort(function(a,b){
           if(a.date<b.date) {
             return -1;
@@ -91,15 +89,6 @@
         userCtrl.data = data;
       }());
     }
-    // -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=- swap value of 'userCtrl.action' variable -=-=-=-=-=-=-=-=-=-
-    // userCtrl.swapAction = function() {
-    //   if(userCtrl.action === "Hide All Rounds") {
-    //     userCtrl.action = "Show All Rounds"
-    //   } else {
-    //     userCtrl.action = "Hide All Rounds"
-    //   }
-    //   userCtrl.showStats = !userCtrl.showStats;
-    // }
     // -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=- reset variables to update view -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
     userCtrl.backButton = function() {
       userCtrl.info = !userCtrl.info;
@@ -153,7 +142,6 @@
       $window.localStorage.removeItem('_id')
       $state.go('home')
     }
-
     // -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=- closing tags -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
   }
 }());

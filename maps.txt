@@ -1,3 +1,0 @@
-api key = "myKey"
-
-api key = "AIzaSyBpwY2Q0CPB3O9I_v-DaQ349pVLDETQMOs"

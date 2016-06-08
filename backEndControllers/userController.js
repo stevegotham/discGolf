@@ -23,7 +23,6 @@ module.exports = {
   },
 // -=-=-=-=-=-=-=-=- authenticate a user and retrieve from databse -=-=-=-=-=-
   login: function(req, res) {
-    console.log('for tony', req.body.password)
     User.findOne({username: req.body.username}).select('username email password').exec(function(err, user) {
       if(err) return res.json({error: err});
       if(!user) return res.json({message: 'No user found'});
@@ -40,7 +39,7 @@ module.exports = {
     });
   },
 // -=-=-=-=-=-=-=- retrieves user from database and populates favCourses array -=-=-=-=-=-=-=-=
-  findOne : function(req, res) {
+  addCourse : function(req, res) {
     User.findById(req.params.id).populate('favCourses').exec(function(err, user) {
       if(err) return res.json({error: err});
       res.json(user);

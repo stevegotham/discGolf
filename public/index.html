@@ -26,17 +26,17 @@
   <body ng-controller="mainController as mainCtrl">
     <div class="row">
       <header class="valign-wrapper header z-depth-2">
-        <!-- <a ui-sref="home" class="noLink"><h1>Super Dope Disc Golf App</h1></a> -->
-        <div class="col s3">
-          <a ui-sref="home" class="noLink">
-            <img src="/images/discUs_2.png" id="logo"/>
-          </a>
-        </div>
-        <!-- <div id="logo"></div> -->
-        <div class="col s4">
-          <a ng-href="#/user/{{mainCtrl.loggedID}}" ng-show="mainCtrl.loggedIn"><button class="waves-effect waves-light btn">Profile</button></a>
-          <a ui-sref="login" ng-hide="mainCtrl.loggedIn"><button class="waves-effect waves-light btn">Login</button></a>
-          <a ui-sref="register" ng-hide="mainCtrl.loggedIn"><button class="waves-effect waves-light btn">Register</button></a>
+        <div class="col s12 valign-wrapper">
+          <div class="col s12 col m4">
+            <a ui-sref="home" class="noLink col s12">
+              <img src="/images/discUs_2.png" id="logo"/>
+            </a>
+          </div>
+          <div class="col s12 col m4">
+            <a ng-href="#/user/{{mainCtrl.loggedID}}" ng-show="mainCtrl.loggedIn"><button class="waves-effect waves-light btn">Profile</button></a>
+            <a ui-sref="login" ng-hide="mainCtrl.loggedIn"><button class="waves-effect waves-light btn">Login</button></a>
+            <a ui-sref="register" ng-hide="mainCtrl.loggedIn"><button class="waves-effect waves-light btn">Register</button></a>
+          </div>
         </div>
       </header>
     </div>

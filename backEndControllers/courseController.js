@@ -23,6 +23,8 @@ module.exports = {
       res.json(course)
     })
   }
+
+  // -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=- funciton used to build my database -=-=-=-=-=-=-=-=-=-=-=-=-=-
   // search : function(req, res) {
   //   console.log(req.query)
   //   $http({
