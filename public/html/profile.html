@@ -24,7 +24,7 @@
 <div class="row" ng-hide="userCtrl.info">
   <h1><span class="accentBorder">{{ userCtrl.user.username }}</span></h1>
   <h4 class="col s12 col m8 col l4 accent">{{ userCtrl.currentCourse.name }}</h4>
-  <span class="col s12"><span>Best Round: <span ng-show="userCtrl.bestScore > 0">+</span><span ng-show="userCtrl.bestScore !== 0">{{ userCtrl.bestScore }}</span><span ng-show="userCtrl.bestScore === 0">Even</span> on {{ userCtrl.bestDate | date: shortDate }}</span></span>
+  <span class="col s12">Best Round: <span ng-show="userCtrl.bestScore > 0">+</span><span ng-show="userCtrl.bestScore !== 0">{{ userCtrl.bestScore }}</span><span ng-show="userCtrl.bestScore === 0">Even</span> on {{ userCtrl.bestDate | date: shortDate }}</span>
   <br>
   <br>
 

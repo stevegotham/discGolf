@@ -43,9 +43,9 @@ a:hover {
 .error {
   color: red;
 }
-.pad {
+/*.pad {
   margin: 5px 0;
-}
+}*/
 .negTopMrgn {
   margin-top: -20px;
 }

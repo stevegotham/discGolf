@@ -57,17 +57,10 @@
           }
         }
       }
-      function order (str) {
-        var tempArr = [];
-        var returnStr = str.split('-');
-        tempArr.push(returnStr[1],returnStr[2],returnStr[0]);
-        return tempArr.join('-');
-      }
       userCtrl.getData = (function() {
         var orderedStats = [];
         for(var i=0;i<userCtrl.currentCourse.stats.length;i++) {
-          var date = userCtrl.currentCourse.stats[i].date.slice(0,userCtrl.currentCourse.stats[i].date.indexOf('T'));
-          orderedStats.push({date: order(date), score: userCtrl.currentCourse.stats[i].score})
+          orderedStats.push({date: userCtrl.currentCourse.stats[i].date, score: userCtrl.currentCourse.stats[i].score})
         };
         orderedStats.sort(function(a,b){
           if(a.date<b.date) {
@@ -81,7 +74,8 @@
         var labels = [];
         var data = [];
         for (var i=0;i<orderedStats.length;i++) {
-          labels.push(orderedStats[i].date);
+          var date = new Date(orderedStats[i].date).toDateString().slice(4);
+          labels.push(date);
           data.push(orderedStats[i].score);
         }
         userCtrl.labels = labels;
@@ -103,7 +97,7 @@
         data: {
           name: course.name,
           stats: [{
-            date: userCtrl.date,
+            date: Date.parse(userCtrl.date),
             score: userCtrl.score
           }]
         }
