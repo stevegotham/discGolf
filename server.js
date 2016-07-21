@@ -6,7 +6,7 @@ var mongoose   = require('mongoose');
 var routes     = require('./routes.js');
 var bcrypt     = require('bcryptjs');
 var app        = express();
-var port       = process.env.PORT || 2323
+var port       = process.env.PORT || 2323;
 // -=-=-=-=-=-=-=-=-=
 // configuration
 app.use(logger('dev'));
@@ -16,7 +16,7 @@ app.use(express.static(__dirname + '/public'));
 mongoose.connect('mongodb://localhost/discGolfDB');
 // -=-=-=-=-=-=-=-=-=
 // routes
-app.use('/', routes)
+app.use('/', routes);
 // -=-=-=-=-=-=-=-=-=
 // start server
 app.listen(port, function(){

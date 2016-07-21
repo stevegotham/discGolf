@@ -63,7 +63,7 @@ module.exports = {
           user.save();
           return res.json(user);
         } else {
-          for(var i=user.courseInfo.length-1;i>-1;i--) {
+          for(var i=user.courseInfo.length-1;i>=0;i--) {
             // -=-=- check if course exists, and add stats if so -=-=-=-=-=-
             if(user.courseInfo[i].name === req.body.name) {
               user.courseInfo[i].stats.push(req.body.stats[0]);
@@ -90,8 +90,8 @@ module.exports = {
   },
 // -=-=-=-=-=-=-=- change "deleted" property on user to "true" -=-=-=-=-=-=
   delete : function(req, res) {
-    User.findOneAndUpdate({_id: req.decoded._id}, {deleted: true, username: req.decoded._id}, function(err) {
-      if(err) return res.send(err);
+    User.findOneAndUpdate({_id: req.decoded._id}, {deleted: true, username: req.decoded._id}, function(err, user) {
+      if(err) return res.json({error: err});
       res.json({message: "User has been deleted"});
     })
   }

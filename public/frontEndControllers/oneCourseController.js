@@ -1,9 +1,9 @@
 (function() {
   'use strict';
     angular.module('oneCourseController', ['ngMap'])
-      .controller('oneCourseController', ['$http', '$stateParams', '$sce','$window','NgMap', oneCourseFunction])
+      .controller('oneCourseController', ['$http', '$stateParams', '$sce','$window','NgMap','$state', oneCourseFunction])
 
-  function oneCourseFunction($http,$stateParams,$sce,$window,NgMap) {
+  function oneCourseFunction($http,$stateParams,$sce,$window,NgMap,$state) {
     var oneCourseCtrl = this;
 
     oneCourseCtrl.course = {};
@@ -22,6 +22,7 @@
             favCourses: course
           }
         }).then(function(response) {
+          $state.go('profile',{id: $window.localStorage._id})
         })
       }
     }

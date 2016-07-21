@@ -4,10 +4,10 @@
   .run(function ($rootScope, $state, $window) {
       $rootScope.$on('$stateChangeStart', function (event, toState, toParams, fromState, fromParams) {
         if(toState.authenticate) {
-              if (!$window.localStorage.getItem('token')) {
-                $state.transitionTo('login')
-                event.preventDefault()
-              }
+          if (!$window.localStorage.getItem('token')) {
+            $state.transitionTo('login')
+            event.preventDefault()
+          }
         }
       })
   })
@@ -54,7 +54,7 @@
         }
       })
     }
-// -=-=-=-=-=-=-=-=-=-=-= logges in a registered user -=-=-=-=-=-=-=-
+// -=-=-=-=-=-=-=-=-=-=-= logs in a registered user -=-=-=-=-=-=-=-
     mainCtrl.login = function() {
       $http({
         method: "POST",
