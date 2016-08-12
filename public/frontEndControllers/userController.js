@@ -44,82 +44,8 @@
       })
     // -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=- updates course-info variables to display in stats view -=-=-=-=-=-=-=
     userCtrl.viewStats = function(course) {
-      userCtrl.info = !userCtrl.info;
-      userCtrl.currentCourse = course;
-      userCtrl.bestScore = 25;
-      userCtrl.bestDate = "a rough day, many years ago";
-      for(var i=0;i<userCtrl.user.courseInfo.length;i++) {
-        if(userCtrl.user.courseInfo[i].name === course.name) {
-          userCtrl.currentCourse = userCtrl.user.courseInfo[i];
-          for(var ii=0;ii<userCtrl.user.courseInfo[i].stats.length;ii++) {
-            if(userCtrl.user.courseInfo[i].stats[ii].score < userCtrl.bestScore) {
-              userCtrl.bestScore = userCtrl.user.courseInfo[i].stats[ii].score;
-              userCtrl.bestDate = userCtrl.user.courseInfo[i].stats[ii].date;
-            }
-          }
-        }
-      }
-      userCtrl.getData = (function() {
-        var orderedStats = [];
-        for(var i=0;i<userCtrl.currentCourse.stats.length;i++) {
-          orderedStats.push({date: userCtrl.currentCourse.stats[i].date, score: userCtrl.currentCourse.stats[i].score})
-        };
-        orderedStats.sort(function(a,b){
-          if(a.date<b.date) {
-            return -1;
-          }
-          if(a.date>b.date) {
-            return 1;
-          }
-          return 0;
-        });
-        var labels = [];
-        var data = [];
-        for (var i=0;i<orderedStats.length;i++) {
-          var date = new Date(orderedStats[i].date).toDateString().slice(4);
-          labels.push(date);
-          data.push(orderedStats[i].score);
-        }
-        userCtrl.labels = labels;
-        userCtrl.data = data;
-      }());
-    }
-    // -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=- reset variables to update view -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
-    userCtrl.backButton = function() {
-      userCtrl.info = !userCtrl.info;
-      userCtrl.showStats = true;
-    }
-      // -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=- function to update user stats in database -=-=-=-=-=-=-=-=-=-=-
-    userCtrl.submitStats = function(course) {
-      userCtrl.info = !userCtrl.info;
-      userCtrl.showStats = true;
-      $http({
-        method: 'PATCH',
-        url: '/user/:id',
-        data: {
-          name: course.name,
-          stats: [{
-            date: Date.parse(userCtrl.date),
-            score: userCtrl.score
-          }]
-        }
-      }).then(function(response) {
-            userCtrl.user = response.data;
-            for(var i=0;i<userCtrl.user.courseInfo.length;i++) {
-              if(userCtrl.user.courseInfo[i].stats.length > userCtrl.profileMost) {
-                userCtrl.profileMost = userCtrl.user.courseInfo[i].stats.length;
-                userCtrl.profileMostPlayed = userCtrl.user.courseInfo[i].name;
-              }
-              for(var ii=0;ii<userCtrl.user.courseInfo[i].stats.length;ii++) {
-                if(userCtrl.user.courseInfo[i].stats[ii].score < userCtrl.profileBestScore) {
-                  userCtrl.profileBestScore = userCtrl.user.courseInfo[i].stats[ii].score;
-                  userCtrl.profileBestCourse = userCtrl.user.courseInfo[i].name;
-                  userCtrl.profileBestDate = userCtrl.user.courseInfo[i].stats[ii].date;
-                }
-              }
-            }
-        userCtrl.score = null;
-      })
+      mainFact.currentCourse = course;
+      $state.go('profileCourse');
     }
     // -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=- delete user -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
     userCtrl.deleteUser = function(user) {

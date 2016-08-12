@@ -5,7 +5,6 @@
 
   function oneCourseFunction($http,$stateParams,$sce,$window,NgMap,$state) {
     var oneCourseCtrl = this;
-
     oneCourseCtrl.course = {};
     // -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= this variable is used to parse the descriptions of courses from database -=-=-=-=-
     oneCourseCtrl.sce = $sce;

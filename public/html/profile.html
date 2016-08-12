@@ -1,5 +1,4 @@
 <!-- -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=- user info -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= -->
-<div ng-show="userCtrl.info">
   <h1 closs="col s12"><span class="accentBorder">{{ userCtrl.user.username }}</span></h1>
   <div class="col s12 col m6">
     <ul>
@@ -18,33 +17,5 @@
     <a ui-sref="search"><button class="waves-effect waves-light btn">Search for courses</button></a>
     <button ng-click="userCtrl.logOut()" class="waves-effect waves-light btn">Logout</button>
     <button ng-click="userCtrl.deleteUser(userCtrl.user)" class="waves-effect waves-light btn">Delete Account</button>
-  </div>
-</div>
-<!-- -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= course info =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=- -->
-<div class="row" ng-hide="userCtrl.info">
-  <h1><span class="accentBorder">{{ userCtrl.user.username }}</span></h1>
-  <h4 class="col s12 col m8 col l4 accent">{{ userCtrl.currentCourse.name }}</h4>
-  <span class="col s12">Best Round: <span ng-show="userCtrl.bestScore > 0">+</span><span ng-show="userCtrl.bestScore !== 0">{{ userCtrl.bestScore }}</span><span ng-show="userCtrl.bestScore === 0">Even</span> on {{ userCtrl.bestDate | date: shortDate }}</span>
-  <br>
-  <br>
-
-  <!-- -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=- submit score form -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=- -->
-  <form id="scoreForm" ng-submit="userCtrl.submitStats(userCtrl.currentCourse)" class="col s12 col m6 col l4">
-    <div class="input-field col s12">
-      <input type="number" ng-model="userCtrl.score" required="true" placeholder="Score">
-    </div>
-    <div class="input-field col s12">
-      <input type="date" ng-model="userCtrl.date" class="datepicker" required="true">
-    </div>
-    <div id="buttons2" class="col s12">
-      <input type="submit" class="waves-effect waves-light btn col s12">
-      <button ng-click="userCtrl.backButton()" class="waves-effect waves-light btn media col s12">Back</button>
-    </div>
-  </form>
-  <!-- -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=- graph -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= -->
-  <div class="col s12 col m10 col l8">
-    <canvas id="chart" class="chart chart-line" chart-data="userCtrl.data"
-      chart-labels="userCtrl.labels" chart-legend="true" chart-series="userCtrl.series" height="300" width="600">
-    </canvas>
   </div>
 </div>

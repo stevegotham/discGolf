@@ -1,6 +1,6 @@
 (function() {
   'use strict';
-  angular.module('discGolfApp', ['ui.router','mainController','oneCourseController', 'userController','chart.js'])
+  angular.module('discGolfApp', ['ui.router','mainController','oneCourseController', 'userController','profileCourseController','chart.js'])
     .config(routerConfig)
     .factory('AuthInterceptor', function($q, $location, $window) {
     	var interceptorFactory = {};
@@ -64,6 +64,12 @@
           url: '/user/:id',
           templateUrl: 'html/profile.html',
           controller: 'userController as userCtrl'
+        })
+        // -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=- routes using profileCourseController -=-=-=-=-=-=-=-=-=-=-=-=-
+        .state('profileCourse', {
+          url: '/userCourse',
+          templateUrl: 'html/profileCourse.html',
+          controller: 'profileCourseController as profCtrl'
         })
         // -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=- routes using oneCourseController -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
         .state('course', {
