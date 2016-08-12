@@ -1,11 +1,11 @@
 <!-- -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=- user info -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= -->
 <div ng-show="userCtrl.info">
-  <h1 closs="col s12"><span class="accentBorder">{{ userCtrl.user.username }}</span></h1>
+  <h1 closs="col s12"><span class="accentBorder">{{ userCtrl.user.username }}{{ mainFact }}</span></h1>
   <div class="col s12 col m6">
     <ul>
-      <li><h5>Best round:</h5> <span ng-show="userCtrl.profileBestScore > 0">+</span><span ng-show="userCtrl.profileBestScore !== 0">{{ userCtrl.profileBestScore }}</span><span ng-show="userCtrl.profileBestScore === 0">Even</span> <span class="accent">@</span> {{ userCtrl.profileBestCourse }}<br>
-      on {{ userCtrl.profileBestDate | date: shortDate }}</li>
-      <li><h5>Most played course:</h5> {{ userCtrl.profileMostPlayed }}</li>
+      <li><h5>Best round:</h5> <span ng-show="userCtrl.user.bestScore > 0">+</span><span ng-show="userCtrl.user.bestScore !== 0">{{ userCtrl.user.bestScore }}</span><span ng-show="userCtrl.user.bestScore === 0">Even</span> <span class="accent">@</span> {{ userCtrl.user.bestCourse }}<br>
+      on {{ userCtrl.user.bestDate | date: shortDate }}</li>
+      <li><h5>Most played course:</h5> {{ userCtrl.user.mostPlayed }}</li>
     </ul>
   </div>
   <div class="col s12 col m6">

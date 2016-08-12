@@ -26,6 +26,13 @@
     	};
     	return interceptorFactory;
     })
+
+    .factory('mainFactory', mainFact)
+
+    function mainFact(){
+      var mainFact = {}
+      return mainFact;
+    }
     // -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=- routes configuration -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
     function routerConfig($stateProvider,$urlRouterProvider,$httpProvider){
 
@@ -65,7 +72,7 @@
           templateUrl: 'html/course.html',
           controller: 'oneCourseController as oneCourseCtrl'
         })
-        
+
         $urlRouterProvider.otherwise('/')
     }
 }());
