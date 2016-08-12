@@ -1,0 +1,26 @@
+<div class="row">
+  <h1><span class="accentBorder">{{ profCtrl.current.user.username }}</span></h1>
+  <h4 class="col s12 col m8 col l4 accent">{{ profCtrl.current.currentCourse.name }}</h4>
+  <span class="col s12">Best Round: <span ng-show="profCtrl.bestScore > 0">+</span><span ng-show="profCtrl.bestScore !== 0">{{ profCtrl.current.bestScore }}</span><span ng-show="profCtrl.bestScore === 0">Even</span> on {{ profCtrl.current.bestDate | date: shortDate }}</span>
+  <br>
+  <br>
+
+  <!-- -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=- submit score form -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=- -->
+  <form id="scoreForm" ng-submit="profCtrl.submitStats(profCtrl.current.currentCourse)" class="col s12 col m6 col l4">
+    <div class="input-field col s12">
+      <input type="number" ng-model="profCtrl.score" required="true" placeholder="Score">
+    </div>
+    <div class="input-field col s12">
+      <input type="date" ng-model="profCtrl.date" class="datepicker" required="true">
+    </div>
+    <div id="buttons2" class="col s12">
+      <input type="submit" class="waves-effect waves-light btn col s12">
+    </div>
+  </form>
+  <!-- -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=- graph -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= -->
+  <div class="col s12 col m10 col l8">
+    <canvas id="chart" class="chart chart-line" chart-data="profCtrl.data"
+      chart-labels="profCtrl.labels" chart-legend="true" chart-series="profCtrl.series" height="300" width="600">
+    </canvas>
+  </div>
+</div>
