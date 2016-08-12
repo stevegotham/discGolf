@@ -1,6 +1,6 @@
 <!-- -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=- user info -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= -->
 <div ng-show="userCtrl.info">
-  <h1 closs="col s12"><span class="accentBorder">{{ userCtrl.user.username }}{{ mainFact }}</span></h1>
+  <h1 closs="col s12"><span class="accentBorder">{{ userCtrl.user.username }}</span></h1>
   <div class="col s12 col m6">
     <ul>
       <li><h5>Best round:</h5> <span ng-show="userCtrl.user.bestScore > 0">+</span><span ng-show="userCtrl.user.bestScore !== 0">{{ userCtrl.user.bestScore }}</span><span ng-show="userCtrl.user.bestScore === 0">Even</span> <span class="accent">@</span> {{ userCtrl.user.bestCourse }}<br>

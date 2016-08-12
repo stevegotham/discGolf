@@ -28,7 +28,6 @@
     })
 
     .factory('mainFactory', mainFact)
-
     function mainFact(){
       var mainFact = {}
       return mainFact;
